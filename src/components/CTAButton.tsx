@@ -2,12 +2,12 @@ import React from "react";
 import classNames from "classnames";
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: "blue" | "thickGray" | "gray";
+  variant?: "green" | "thickGray" | "gray";
   children: React.ReactNode;
 }
 
 const Button: React.FC<ButtonProps> = ({
-  variant = "blue",
+  variant = "green",
   children,
   ...props
 }) => {
@@ -17,7 +17,8 @@ const Button: React.FC<ButtonProps> = ({
   const sizeClass = "max-w-[353px] h-[56px] text-[16px] font-[500]";
 
   const variantClass = {
-    blue: "bg-[#4d83fd] text-[#fff] font-[Pretendard] font-medium leading-[140%]",
+    green:
+      "bg-[#3CB371] text-[#fff] font-[Pretendard] font-medium leading-[140%]",
     thickGray: "bg-[#bdbdbd] text-[#fff]",
     gray: "bg-[#f6f6f6] text-[#8e8e8e] border-[1px] border-solid border-[#dedede]",
   }[variant];
