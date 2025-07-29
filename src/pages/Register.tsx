@@ -1,4 +1,3 @@
-import React from "react";
 import CTAButton from "../components/CTAButton";
 import { useNavigate } from "react-router-dom";
 import left_chevron from "../assets/chevron/left_chevronImg.svg";
