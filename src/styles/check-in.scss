@@ -1,0 +1,45 @@
+.checkin-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 32px 16px;
+  width: 100%;
+  min-height: 100vh;
+  background-color: var(--krds-color-background-default); // 흰 배경
+  font-family: "Pretendard GOV", sans-serif;
+
+  .back-button {
+    align-self: flex-start;
+    margin-bottom: 20px;
+    cursor: pointer;
+  }
+
+  .checkin-title {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 32px;
+    color: #222;
+  }
+
+  .nfc-visual {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+
+    .nfc-icon {
+      width: 120px;
+      height: 120px;
+    }
+
+    .nfc-text {
+      font-size: 16px;
+      color: #555;
+    }
+
+    .nfc-status {
+      font-size: 14px;
+      color: var(--krds-color-primary);
+    }
+  }
+}
