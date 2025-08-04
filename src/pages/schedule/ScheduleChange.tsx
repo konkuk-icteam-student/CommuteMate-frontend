@@ -58,14 +58,14 @@ const ScheduleChange = () => {
   };
 
   const getWeeklyHours = (week: number) => {
-    const count = Object.keys(selected).filter((key) =>
-      key.startsWith(`${week}-`)
+    const count = Object.entries(selected).filter(
+      ([key, value]) => key.startsWith(`${week}-`) && value === true
     ).length;
-    return (count * 0.5).toFixed(1); // 30분 단위니까 0.5 곱함
+    return (count * 0.5).toFixed(1);
   };
 
   const getMonthlyHours = () => {
-    const count = Object.keys(selected).length;
+    const count = Object.values(selected).filter((v) => v === true).length;
     return (count * 0.5).toFixed(1);
   };
 
@@ -129,12 +129,27 @@ const ScheduleChange = () => {
         ))}
       </div>
       <div className="summary">
-        <p>
+        <p
+          className={
+            parseFloat(getWeeklyHours(currentWeek)) >= 13.5 ? "text-red" : ""
+          }
+        >
           {currentWeek}주차 근무 시간: {getWeeklyHours(currentWeek)}시간
         </p>
-        <p>9월 총 근무 시간: {getMonthlyHours()}시간</p>
+
+        <p
+          className={
+            parseFloat(getMonthlyHours()) >= 27.5
+              ? "text-red"
+              : parseFloat(getMonthlyHours()) === 27
+              ? "text-green"
+              : ""
+          }
+        >
+          {TARGET_MONTH + 1}월 총 근무 시간: {getMonthlyHours()}시간
+        </p>
       </div>
-      <CTAButton>수정요청</CTAButton>
+      <CTAButton>변경 요청</CTAButton>
     </div>
   );
 };
