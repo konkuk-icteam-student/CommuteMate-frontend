@@ -4,14 +4,45 @@ import left_chevron from "../../assets/chevron/left_chevronImg.svg";
 import "../../styles/schedule/schedule.scss";
 import CTAButton from "../../components/CTAButton";
 import classNames from "classnames";
+import { addDays, format, isSameMonth, startOfWeek } from "date-fns";
 
-const DAYS = ["월", "화", "수", "목", "금"];
-const TIMES = Array.from({ length: 18 }, (_, i) => {
-  const hour = 9 + Math.floor(i / 2);
-  const min = i % 2 === 0 ? "00" : "30";
-  return `${String(hour).padStart(2, "0")}:${min}`;
+const YEAR = new Date().getFullYear(); // 올해
+const TARGET_MONTH = 8; // JS 기준 0=1월 → 8=9월
+
+const getWeekDates = (
+  week: number
+): { label: string; date: Date; disabled: boolean }[] => {
+  const start = new Date(YEAR, TARGET_MONTH, 1); // 9월 1일 시작
+  const base = addDays(start, (week - 1) * 7);
+  const monday = startOfWeek(base, { weekStartsOn: 1 }); // 월요일 기준
+
+  return Array.from({ length: 5 }, (_, i) => {
+    const day = addDays(monday, i); // 월~금
+    return {
+      label: `${day.getMonth() + 1}/${day.getDate()}`, // 예: 9/1
+      date: day,
+      disabled: day.getMonth() !== TARGET_MONTH,
+    };
+  });
+};
+
+const TIMES = Array.from({ length: 17 }, (_, i) => {
+  const startHour = 9 + Math.floor(i / 2);
+  const startMin = i % 2 === 0 ? 0 : 30;
+
+  const endMinutes = startHour * 60 + startMin + 30;
+  const endHour = Math.floor(endMinutes / 60);
+  const endMin = endMinutes % 60;
+
+  const pad = (n: number) => String(n).padStart(2, "0");
+
+  const start = `${pad(startHour)}:${pad(startMin)}`;
+  const end = `${pad(endHour)}:${pad(endMin)}`;
+
+  return `${start}~${end}`;
 });
-const DISABLED_TIMES = ["11:30", "12:00", "12:30"];
+
+const DISABLED_TIMES = ["11:30~12:00", "12:00~12:30", "12:30~13:00"];
 
 const ScheduleChange = () => {
   const navigate = useNavigate();
@@ -26,6 +57,19 @@ const ScheduleChange = () => {
     }));
   };
 
+  const getWeeklyHours = (week: number) => {
+    const count = Object.keys(selected).filter((key) =>
+      key.startsWith(`${week}-`)
+    ).length;
+    return (count * 0.5).toFixed(1); // 30분 단위니까 0.5 곱함
+  };
+
+  const getMonthlyHours = () => {
+    const count = Object.keys(selected).length;
+    return (count * 0.5).toFixed(1);
+  };
+
+  const dates = getWeekDates(currentWeek);
   return (
     <div className="schedule-container">
       <div className="back-button" onClick={() => navigate("/schedule")}>
@@ -49,9 +93,12 @@ const ScheduleChange = () => {
       <div className="schedule-grid">
         <div className="header-row">
           <div className="time-cell" />
-          {DAYS.map((day) => (
-            <div key={day} className="day-cell">
-              {day}
+          {dates.map((d, i) => (
+            <div key={i} className="day-cell">
+              <div className="date-label">{d.label}</div>
+              <div className="weekday-label">
+                {["월", "화", "수", "목", "금"][i]}
+              </div>
             </div>
           ))}
         </div>
@@ -59,25 +106,33 @@ const ScheduleChange = () => {
         {TIMES.map((time) => (
           <div key={time} className="row">
             <div className="time-cell">{time}</div>
-            {DAYS.map((day) => {
-              const key = `${currentWeek}-${day}-${time}`;
-              const isDisabled = DISABLED_TIMES.includes(time);
+            {dates.map((d) => {
+              const timeKey = `${currentWeek}-${d.label}-${time}`; // label 사용
+              const isDisabled = d.disabled || DISABLED_TIMES.includes(time);
 
               return (
                 <div
-                  key={key}
+                  key={timeKey}
                   className={classNames("cell", {
-                    selected: selected[key],
+                    selected: selected[timeKey],
                     disabled: isDisabled,
                   })}
                   onClick={() => {
-                    if (!isDisabled) toggleCell(day, time);
+                    if (!isDisabled) {
+                      toggleCell(d.label, time);
+                    }
                   }}
                 />
               );
             })}
           </div>
         ))}
+      </div>
+      <div className="summary">
+        <p>
+          {currentWeek}주차 근무 시간: {getWeeklyHours(currentWeek)}시간
+        </p>
+        <p>9월 총 근무 시간: {getMonthlyHours()}시간</p>
       </div>
       <CTAButton>수정요청</CTAButton>
     </div>
