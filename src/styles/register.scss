@@ -9,3 +9,27 @@
     width: fit-content;
   }
 }
+
+.input-with-timer {
+  position: relative;
+
+  .krds-input {
+    width: 100%;
+    padding-right: 70px; // 타이머 표시 공간 확보
+  }
+
+  .input-timer {
+    position: absolute;
+    top: 50%;
+    right: 16px;
+    transform: translateY(-50%);
+    font-size: 16px;
+    color: #999;
+    font-family: "Pretendard GOV", sans-serif;
+    pointer-events: none; // 클릭 방해 X
+  }
+
+  .timer-danger {
+    color: #d32f2f; // KRDS 에러 빨강
+  }
+}
