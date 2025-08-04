@@ -38,6 +38,10 @@
 }
 
 body {
+  width: 100%; // 화면 너비 전체
+  max-width: 400px; // 최대 400px까지만 확장
+  height: 100dvh;
+  margin: 0 auto;
   font-family: "Pretendard GOV", sans-serif;
   font-weight: 400;
   background: #1e1e2e;
