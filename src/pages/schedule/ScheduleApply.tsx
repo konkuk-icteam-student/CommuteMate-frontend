@@ -4,7 +4,7 @@ import left_chevron from "../../assets/chevron/left_chevronImg.svg";
 import "../../styles/schedule/schedule.scss";
 import CTAButton from "../../components/CTAButton";
 import classNames from "classnames";
-import { addDays, format, isSameMonth, startOfWeek } from "date-fns";
+import { addDays, startOfWeek } from "date-fns";
 
 const YEAR = new Date().getFullYear(); // 올해
 const TARGET_MONTH = 8; // JS 기준 0=1월 → 8=9월
