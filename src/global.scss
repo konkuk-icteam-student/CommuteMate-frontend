@@ -1,0 +1,49 @@
+@import "../resources/scss/common/common.scss";
+@import "../resources/scss/component/button";
+@import "../resources/scss/component/input";
+
+/* Pretendard GOV Regular (400) */
+@font-face {
+  font-family: "Pretendard GOV";
+  src: url("../resources/fonts/PretendardGOV-Regular.subset.woff2")
+      format("woff2"),
+    url("../resources/fonts/PretendardGOV-Regular.subset.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* Pretendard GOV Medium (500) */
+@font-face {
+  font-family: "Pretendard GOV";
+  src: url("../resources/fonts/PretendardGOV-Medium.subset.woff2")
+      format("woff2"),
+    url("../resources/fonts/PretendardGOV-Medium.subset.woff") format("woff");
+  font-weight: 500;
+  font-style: normal;
+}
+
+/* Pretendard GOV Bold (700) */
+@font-face {
+  font-family: "Pretendard GOV";
+  src: url("../resources/fonts/PretendardGOV-Bold.subset.woff2") format("woff2"),
+    url("../resources/fonts/PretendardGOV-Bold.subset.woff") format("woff");
+  font-weight: 700;
+  font-style: normal;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Pretendard GOV", sans-serif;
+  font-weight: 400;
+  background: #1e1e2e;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
