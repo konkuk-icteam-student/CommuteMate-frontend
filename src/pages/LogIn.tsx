@@ -2,6 +2,7 @@ import CTAButton from "../components/CTAButton";
 import Input from "../components/Input";
 import { useUserForm } from "../hooks/useUserForm";
 import { useNavigate } from "react-router-dom";
+import "../styles/login.scss";
 
 const LogIn = () => {
   const navigate = useNavigate();
@@ -13,11 +14,9 @@ const LogIn = () => {
   };
   const { ID, setID, password, setPassword, isFormFilled } = useUserForm();
   return (
-    <div className="w-[353px]">
-      <div className="text-[30px] text-center mb-[50px]">
-        근로 학생 출근 관리
-      </div>
-      <div className="flex flex-col gap-[10px]">
+    <div className="login-container">
+      <div className="title">근로 학생 출근 관리</div>
+      <div className="form">
         <Input
           placeholder="아이디"
           value={ID}
@@ -30,12 +29,12 @@ const LogIn = () => {
           onChange={(e) => setPassword(e.target.value)}
         />
         <CTAButton
-          variant={isFormFilled ? "green" : "thickGray"}
+          variant={isFormFilled ? "primary" : "secondary"}
           onClick={moveHome}
         >
           로그인
         </CTAButton>
-        <CTAButton variant="gray" onClick={handleClick}>
+        <CTAButton variant="tertiary" onClick={handleClick}>
           회원가입
         </CTAButton>
       </div>

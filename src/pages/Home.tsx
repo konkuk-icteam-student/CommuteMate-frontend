@@ -1,11 +1,12 @@
 import { useNavigate } from "react-router-dom";
 import CTAButton from "../components/CTAButton";
+import "../styles/home.scss"; // SCSS import
 
 const Home = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="flex flex-col w-[353px] gap-[15px]">
+    <div className="home-container">
       <CTAButton onClick={() => navigate("/schedule")}>
         근로 시간 관리
       </CTAButton>

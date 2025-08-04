@@ -1,12 +1,14 @@
 import { useNavigate } from "react-router-dom";
 import CTAButton from "../../components/CTAButton";
 import left_chevron from "../../assets/chevron/left_chevronImg.svg";
+import "../../styles/schedule-home.scss";
 
 const ScheduleHome = () => {
   const navigate = useNavigate();
+
   return (
-    <div className="flex flex-col w-[353px] gap-[15px]">
-      <div onClick={() => navigate("/home")}>
+    <div className="schedule-home-container">
+      <div className="back-button" onClick={() => navigate("/home")}>
         <img src={left_chevron} alt="뒤로가기" />
       </div>
       <CTAButton onClick={() => navigate("apply")}>근로 시간 신청</CTAButton>
