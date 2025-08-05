@@ -39,8 +39,30 @@
         font-size: 25px;
         font-weight: 600;
         color: #212121;
+
+        .today-date {
+          font-size: 16px;
+          font-weight: 400;
+          color: #868e96;
+          margin-left: 8px;
+        }
       }
     }
+
+    .task-section-title {
+      font-size: 18px;
+      font-weight: 600;
+      color: #212529;
+      margin: 24px 0 12px;
+    }
+
+    .task-subtitle {
+      font-size: 15px;
+      font-weight: 500;
+      color: #495057;
+      margin: 16px 0 8px;
+    }
+
     .tasks-list {
       list-style: none;
       padding: 0;
@@ -74,6 +96,54 @@
             }
           }
         }
+      }
+    }
+
+    .task-add-form {
+      display: flex;
+      margin-top: 16px;
+      gap: 8px;
+
+      input {
+        flex: 1;
+        padding: 8px 12px;
+        font-size: 14px;
+        border: 1px solid #dee2e6;
+        border-radius: 8px;
+        outline: none;
+
+        &:focus {
+          border-color: #4d7cfe;
+          box-shadow: 0 0 0 2px rgba(77, 124, 254, 0.2);
+        }
+      }
+
+      button {
+        background-color: #4d7cfe;
+        color: #fff;
+        padding: 8px 16px;
+        border: none;
+        border-radius: 8px;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+
+        &:hover {
+          background-color: #375de4;
+        }
+      }
+    }
+
+    .delete-button {
+      margin-left: auto;
+      background: none;
+      border: none;
+      font-size: 16px;
+      cursor: pointer;
+      color: #d32f2f;
+
+      &:hover {
+        opacity: 0.8;
       }
     }
   }
