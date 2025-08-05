@@ -16,26 +16,31 @@
     max-width: 400px;
     position: relative;
 
-    .back-button {
-      position: absolute;
-      top: 24px;
-      left: 24px;
-      cursor: pointer;
+    .header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 24px;
+      color: #212121;
 
-      img {
-        width: 24px;
-        height: 24px;
+      .back-button {
+        background: none;
+        border: none;
+        padding: 0;
+        cursor: pointer;
+
+        img {
+          width: 24px;
+          height: 24px;
+        }
+      }
+
+      h2 {
+        font-size: 25px;
+        font-weight: 600;
+        color: #212121;
       }
     }
-
-    .tasks-title {
-      font-size: 22px;
-      font-weight: 700;
-      text-align: center;
-      color: #212529;
-      margin-bottom: 24px;
-    }
-
     .tasks-list {
       list-style: none;
       padding: 0;

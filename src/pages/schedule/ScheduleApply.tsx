@@ -72,12 +72,12 @@ const ScheduleApply = () => {
   const dates = getWeekDates(currentWeek);
   return (
     <div className="schedule-container">
-      <div className="back-button" onClick={() => navigate("/schedule")}>
-        <img src={left_chevron} alt="뒤로가기" />
+      <div className="header">
+        <div className="back-button" onClick={() => navigate("/schedule")}>
+          <img src={left_chevron} alt="뒤로가기" />
+        </div>
+        <h2 className="schedule-title">근로 시간 신청</h2>
       </div>
-
-      <h2 className="schedule-title">근로 시간 신청</h2>
-
       <div className="week-selector">
         {[1, 2, 3, 4, 5].map((week) => (
           <button

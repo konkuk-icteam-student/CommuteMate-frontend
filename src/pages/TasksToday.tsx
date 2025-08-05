@@ -24,12 +24,13 @@ const TasksToday = () => {
   return (
     <div className="tasks-container">
       <div className="tasks-box">
-        <div className="back-button" onClick={() => navigate("/home")}>
-          <img src={left_chevron} alt="뒤로가기" />
+        <div className="header">
+          <div className="back-button" onClick={() => navigate("/home")}>
+            <img src={left_chevron} alt="뒤로가기" />
+          </div>
+
+          <h2>오늘 할 일</h2>
         </div>
-
-        <h2 className="tasks-title">오늘 할 일</h2>
-
         <ul className="tasks-list">
           {tasks.map((task) => (
             <li key={task.id} className="task-item">

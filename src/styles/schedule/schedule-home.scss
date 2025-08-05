@@ -17,23 +17,29 @@
     position: relative;
     text-align: center;
 
-    .back-button {
-      position: absolute;
-      top: 24px;
-      left: 24px;
-      cursor: pointer;
+    .header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 24px;
 
-      img {
-        width: 24px;
-        height: 24px;
+      .back-button {
+        background: none;
+        border: none;
+        padding: 0;
+        cursor: pointer;
+
+        img {
+          width: 24px;
+          height: 24px;
+        }
       }
-    }
 
-    .schedule-title {
-      font-size: 22px;
-      font-weight: 700;
-      color: #212529;
-      margin-bottom: 32px;
+      .title {
+        font-size: 25px;
+        font-weight: 600;
+        color: #212121;
+      }
     }
 
     .schedule-buttons {

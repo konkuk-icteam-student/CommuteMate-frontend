@@ -9,11 +9,12 @@ const ScheduleHome = () => {
   return (
     <div className="schedule-home-container">
       <div className="schedule-home-box">
-        <div className="back-button" onClick={() => navigate("/home")}>
-          <img src={left_chevron} alt="뒤로가기" />
+        <div className="header">
+          <div className="back-button" onClick={() => navigate("/home")}>
+            <img src={left_chevron} alt="뒤로가기" />
+          </div>
+          <h2 className="title">근로 시간 관리</h2>
         </div>
-
-        <h2 className="schedule-title">근로 시간 관리</h2>
 
         <div className="schedule-buttons">
           <CTAButton onClick={() => navigate("apply")}>
