@@ -40,7 +40,8 @@
 body {
   width: 100%; // 화면 너비 전체
   max-width: 400px; // 최대 400px까지만 확장
-  height: 100dvh;
+  height: calc(var(--vh, 1vh) * 100);
+  background-color: #f8f9fa;
   margin: 0 auto;
   font-family: "Pretendard GOV", sans-serif;
   font-weight: 400;
@@ -49,5 +50,4 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
 }
