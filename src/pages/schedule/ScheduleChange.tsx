@@ -72,11 +72,12 @@ const ScheduleChange = () => {
   const dates = getWeekDates(currentWeek);
   return (
     <div className="schedule-container">
-      <div className="back-button" onClick={() => navigate("/schedule")}>
-        <img src={left_chevron} alt="뒤로가기" />
+      <div className="header">
+        <div className="back-button" onClick={() => navigate("/schedule")}>
+          <img src={left_chevron} alt="뒤로가기" />
+        </div>
+        <h2 className="schedule-title">근로 시간 변경</h2>
       </div>
-
-      <h2 className="schedule-title">근로 시간 변경</h2>
 
       <div className="week-selector">
         {[1, 2, 3, 4, 5].map((week) => (
@@ -149,7 +150,9 @@ const ScheduleChange = () => {
           {TARGET_MONTH + 1}월 총 근무 시간: {getMonthlyHours()}시간
         </p>
       </div>
-      <CTAButton>변경 요청</CTAButton>
+      <div className="button-box">
+        <CTAButton>변경 요청</CTAButton>
+      </div>
     </div>
   );
 };

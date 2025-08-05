@@ -31,15 +31,6 @@
   font-style: normal;
 }
 
-.module {
-  width: 100vh;
-}
-@media only screen and (max-device-width: 640px) {
-  .module {
-    height: calc(var(--var, 1vh) * 100);
-  }
-}
-
 * {
   padding: 0;
   margin: 0;
@@ -49,12 +40,11 @@
 body {
   width: 100%; // 화면 너비 전체
   max-width: 400px; // 최대 400px까지만 확장
-  height: calc(var(--vh, 1vh) * 100);
+  height: 100vh;
   background-color: #f8f9fa;
   margin: 0 auto;
   font-family: "Pretendard GOV", sans-serif;
   font-weight: 400;
-  background: #1e1e2e;
   color: #fff;
   display: flex;
   justify-content: center;

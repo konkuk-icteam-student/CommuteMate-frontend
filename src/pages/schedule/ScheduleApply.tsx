@@ -149,7 +149,16 @@ const ScheduleApply = () => {
           {TARGET_MONTH + 1}월 총 근무 시간: {getMonthlyHours()}시간
         </p>
       </div>
-      <CTAButton>일괄신청</CTAButton>
+      <div className="button-box">
+        <CTAButton
+          variant={
+            parseFloat(getMonthlyHours()) === 27 ? "primary" : "secondary"
+          }
+        >
+          일괄 신청
+        </CTAButton>
+        <CTAButton variant="tertiary">신청 취소</CTAButton>
+      </div>
     </div>
   );
 };
