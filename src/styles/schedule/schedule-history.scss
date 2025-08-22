@@ -89,4 +89,35 @@
       }
     }
   }
+  .tabs {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+  }
+
+  .tab {
+    appearance: none;
+    background-color: #fff;
+    border: 1px solid #dee2e6;
+    border-radius: 9999px;
+    padding: 8px 16px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #495057;
+    cursor: pointer;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+
+    &:focus-visible {
+      outline: 2px solid #1d4ed8;
+      outline-offset: 2px;
+    }
+
+    &.is-active,
+    &[aria-selected="true"] {
+      background-color: #1d4ed8;
+      color: #fff;
+      border-color: transparent;
+    }
+  }
 }

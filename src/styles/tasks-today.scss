@@ -147,4 +147,20 @@
       }
     }
   }
+  .task-add-form {
+    display: flex;
+    gap: 8px;
+  }
+  .task-add-form select {
+    padding: 8px 10px;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    option {
+      border-radius: 8px;
+    }
+  }
+  .task-add-form button {
+    padding: 8px 14px;
+    border-radius: 8px;
+  }
 }
