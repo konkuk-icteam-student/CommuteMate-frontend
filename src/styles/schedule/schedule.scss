@@ -117,8 +117,8 @@
           cursor: not-allowed;
         }
 
-        &:hover:not(.disabled) {
-          background-color: #e0f0ff;
+        &:active:not(.disabled) {
+          background-color: #e9f8e2;
         }
       }
     }
