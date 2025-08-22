@@ -1,6 +1,6 @@
 .checkin-container {
-  min-height: 100vh;
-  width: 100vw;
+  min-height: 100dvh;
+  width: 100%;
   background-color: #f8f9fa;
   display: flex;
   justify-content: center;
@@ -8,6 +8,7 @@
   font-family: "Pretendard GOV", sans-serif;
 
   .checkin-box {
+    position: relative;
     background-color: #fff;
     padding: 40px 24px;
     border-radius: 16px;
