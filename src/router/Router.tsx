@@ -14,6 +14,12 @@ import ScheduleChange from "../pages/schedule/ScheduleChange";
 import ScheduleHistory from "../pages/schedule/ScheduleHistory";
 import ScheduleHome from "../pages/schedule/ScheduleHome";
 
+import AdminHome from "../pages/Admin/adminHome";
+import AdminApplyApprove from "../pages/Admin/AdminApplyApprove";
+import AdminChangeApprove from "../pages/Admin/AdminChangeApprove";
+import AdminCheckTime from "../pages/Admin/AdminCheckTime";
+import AdminTimeStatus from "../pages/Admin/AdminTimeStatus";
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -54,6 +60,26 @@ const router = createBrowserRouter([
   {
     path: "/schedule/history",
     element: <ScheduleHistory />,
+  },
+  {
+    path: "/admin/applyapprove",
+    element: <AdminApplyApprove />,
+  },
+  {
+    path: "/admin/changeapprove",
+    element: <AdminChangeApprove />,
+  },
+  {
+    path: "/admin/home",
+    element: <AdminHome />,
+  },
+  {
+    path: "/admin/home",
+    element: <AdminHome />,
+  },
+  {
+    path: "/admin/home",
+    element: <AdminHome />,
   },
 ]);
 
