@@ -6,8 +6,9 @@ import CTAButton from "../../components/CTAButton";
 import classNames from "classnames";
 import { addDays, startOfWeek } from "date-fns";
 
-const YEAR = new Date().getFullYear(); // 올해
-const TARGET_MONTH = 8; // JS 기준 0=1월 → 8=9월
+const today = new Date();
+const YEAR = today.getFullYear();
+const TARGET_MONTH = today.getMonth();
 
 const getWeekDates = (
   week: number
@@ -76,7 +77,7 @@ const ScheduleChange = () => {
         <div className="back-button" onClick={() => navigate("/schedule")}>
           <img src={left_chevron} alt="뒤로가기" />
         </div>
-        <h2 className="schedule-title">근로 시간 변경</h2>
+        <h2 className="schedule-title">{TARGET_MONTH + 1}월 근로 시간 변경</h2>
       </div>
 
       <div className="week-selector">

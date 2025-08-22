@@ -5,9 +5,15 @@ import "../../styles/schedule/schedule.scss";
 import CTAButton from "../../components/CTAButton";
 import classNames from "classnames";
 import { addDays, startOfWeek } from "date-fns";
+import { MONTH_LIMIT, WEEK_LIMIT, INTERVAL } from "../../constants/global";
 
-const YEAR = new Date().getFullYear(); // 올해
-const TARGET_MONTH = 8; // JS 기준 0=1월 → 8=9월
+const today = new Date();
+today.setDate(today.getDate() + INTERVAL);
+const YEAR = today.getFullYear();
+const targetDate = new Date(2025, 8, 10);
+targetDate.setDate(today.getDate() + INTERVAL);
+console.log(targetDate);
+const TARGET_MONTH = targetDate.getMonth();
 
 const getWeekDates = (
   week: number
@@ -76,7 +82,7 @@ const ScheduleApply = () => {
         <div className="back-button" onClick={() => navigate("/schedule")}>
           <img src={left_chevron} alt="뒤로가기" />
         </div>
-        <h2 className="schedule-title">근로 시간 신청</h2>
+        <h2 className="schedule-title">{TARGET_MONTH + 1}월 근로 시간 신청</h2>
       </div>
       <div className="week-selector">
         {[1, 2, 3, 4, 5].map((week) => (
@@ -131,7 +137,9 @@ const ScheduleApply = () => {
       <div className="summary">
         <p
           className={
-            parseFloat(getWeeklyHours(currentWeek)) >= 13.5 ? "text-red" : ""
+            parseFloat(getWeeklyHours(currentWeek)) > WEEK_LIMIT
+              ? "text-red"
+              : ""
           }
         >
           {currentWeek}주차 근무 시간: {getWeeklyHours(currentWeek)}시간
@@ -139,9 +147,9 @@ const ScheduleApply = () => {
 
         <p
           className={
-            parseFloat(getMonthlyHours()) >= 27.5
+            parseFloat(getMonthlyHours()) > MONTH_LIMIT
               ? "text-red"
-              : parseFloat(getMonthlyHours()) === 27
+              : parseFloat(getMonthlyHours()) === MONTH_LIMIT
               ? "text-green"
               : ""
           }
@@ -152,7 +160,11 @@ const ScheduleApply = () => {
       <div className="button-box">
         <CTAButton
           variant={
-            parseFloat(getMonthlyHours()) === 27 ? "primary" : "secondary"
+            parseFloat(getMonthlyHours()) !== MONTH_LIMIT
+              ? "secondary"
+              : parseFloat(getWeeklyHours(currentWeek)) > WEEK_LIMIT
+              ? "secondary"
+              : "primary"
           }
         >
           일괄 신청
