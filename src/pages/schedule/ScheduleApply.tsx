@@ -10,10 +10,7 @@ import { MONTH_LIMIT, WEEK_LIMIT, INTERVAL } from "../../constants/global";
 const today = new Date();
 today.setDate(today.getDate() + INTERVAL);
 const YEAR = today.getFullYear();
-const targetDate = new Date(2025, 8, 10);
-targetDate.setDate(today.getDate() + INTERVAL);
-console.log(targetDate);
-const TARGET_MONTH = targetDate.getMonth();
+const TARGET_MONTH = today.getMonth();
 
 const getWeekDates = (
   week: number
