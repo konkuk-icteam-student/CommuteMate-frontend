@@ -37,9 +37,9 @@
   box-sizing: border-box;
 }
 
-body {
-  width: 100%; // 화면 너비 전체
-  max-width: 400px; // 최대 400px까지만 확장
+#root {
+  width: 100%;
+  max-width: 400px;
   height: 100vh;
   background-color: #f8f9fa;
   margin: 0 auto;
