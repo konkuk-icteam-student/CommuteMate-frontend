@@ -19,6 +19,7 @@ import AdminApplyApprove from "../pages/Admin/AdminApplyApprove";
 import AdminChangeApprove from "../pages/Admin/AdminChangeApprove";
 import AdminCheckTime from "../pages/Admin/AdminCheckTime";
 import AdminTimeStatus from "../pages/Admin/AdminTimeStatus";
+import AdminSetTodo from "../pages/Admin/AdminSetTodo";
 
 const router = createBrowserRouter([
   {
@@ -80,6 +81,10 @@ const router = createBrowserRouter([
   {
     path: "/admin/timestatus",
     element: <AdminTimeStatus />,
+  },
+  {
+    path: "/admin/settodo",
+    element: <AdminSetTodo />,
   },
 ]);
 
