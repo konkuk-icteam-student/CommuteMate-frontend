@@ -1,0 +1,316 @@
+/* ====== 400px 컴팩트 레이아웃 ====== */
+.krds-page--w400 {
+  max-width: 400px;
+  height: 100dvh;
+  margin: 0 auto;
+  padding: 12px;
+  .krds-parent {
+    position: relative;
+    img {
+      position: absolute;
+    }
+  }
+  .krds-h1 {
+    display: flex;
+    font-size: 20px;
+    margin-bottom: 4px;
+    align-items: center;
+    justify-content: center;
+  }
+  .krds-desc {
+    font-size: 12px;
+  }
+
+  /* 헤더/툴바: 단일 컬럼 스택 */
+  .krds-header {
+    grid-template-columns: 1fr; /* 한 줄 */
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+
+  .krds-toolbar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+  }
+  .krds-field,
+  .krds-field--grow {
+    width: 100%;
+    min-width: 0;
+  }
+  .krds-input,
+  .krds-select {
+    height: 34px;
+    font-size: 13px;
+  }
+
+  .krds-toggle {
+    font-size: 13px;
+  }
+
+  /* 버튼: 기본은 가로 100% (상단 2개 버튼) */
+  .krds-btn,
+  .krds-btn--ghost {
+    width: 100%;
+    height: 36px;
+    padding: 0 10px;
+  }
+
+  /* 카드/그리드: 좌측 시간 폭을 줄이고, 행 높이를 컴팩트하게 */
+  .krds-card {
+    border-radius: 10px;
+  }
+
+  .krds-grid__head {
+    grid-template-columns: 96px 1fr; /* 시간 열 96px */
+  }
+  .krds-grid__row {
+    grid-template-columns: 96px 1fr;
+  }
+  .krds-grid__cell {
+    padding: 8px 10px;
+    min-height: 44px;
+  }
+  .krds-grid__cell--time {
+    left: 0;
+  } /* sticky 유지 */
+  .krds-time-badge {
+    font-size: 13px;
+  }
+
+  /* 현재 구간 강조는 유지하되 대비만 살짝 강화 */
+  .krds-grid__row--now {
+    box-shadow: inset 0 0 0 2px rgba(20, 85, 221, 0.08);
+  }
+
+  /* 스크롤 높이 조정 (작은 화면 대비) */
+  .krds-grid__body {
+    max-height: 60vh;
+  }
+
+  /* 칩/태그: 더 조밀하게 */
+  .krds-chiplist {
+    gap: 6px;
+  }
+  .krds-chip {
+    gap: 4px;
+    padding: 5px 8px;
+    font-size: 12px;
+  }
+  .krds-chip__name {
+    font-weight: 600;
+  }
+  .krds-chip__meta {
+    font-size: 11px;
+  }
+  .krds-tag {
+    padding: 3px 7px;
+    font-size: 11px;
+  }
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.krds-page {
+  font-family: var(--krds-font-family);
+  color: var(--krds-fg);
+  background: var(--krds-bg);
+  padding: 24px;
+  line-height: 1.5;
+}
+
+.krds-header {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 16px 20px;
+  align-items: end;
+  margin-bottom: 16px;
+}
+.krds-h1 {
+  margin: 0 0 6px;
+  font-size: 22px;
+  font-weight: 700;
+}
+.krds-desc {
+  margin: 0;
+  font-size: 13px;
+  color: var(--krds-fg-muted);
+}
+
+.krds-toolbar {
+  display: flex;
+  gap: 10px;
+  align-items: end;
+  flex-wrap: wrap;
+}
+.krds-field {
+  display: grid;
+  gap: 6px;
+}
+.krds-field--grow {
+  flex: 1;
+  min-width: 220px;
+}
+.krds-label {
+  font-size: 12px;
+  color: var(--krds-fg-muted);
+}
+.krds-input,
+.krds-select {
+  height: 36px;
+  border: 1px solid var(--krds-border);
+  border-radius: 8px;
+  padding: 0 10px;
+  background: #fff;
+  font-size: 14px;
+}
+.krds-toggle {
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  font-size: 14px;
+  color: var(--krds-fg);
+  user-select: none;
+}
+.krds-btn {
+  height: 36px;
+  padding: 0 12px;
+  border-radius: 8px;
+  background: var(--krds-primary);
+  color: var(--krds-primary-ink);
+  border: 1px solid transparent;
+  font-weight: 600;
+  cursor: pointer;
+}
+.krds-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.krds-btn--ghost {
+  background: transparent;
+  color: var(--krds-primary);
+  border-color: var(--krds-primary);
+}
+
+.krds-card {
+  background: var(--krds-surface);
+  border: 1px solid var(--krds-border);
+  border-radius: var(--krds-radius);
+  padding: 0;
+  overflow: hidden;
+}
+
+/* ---- Grid ---- */
+.krds-grid {
+  width: 100%;
+  display: grid;
+  grid-template-rows: auto 1fr;
+}
+
+.krds-grid__head {
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  border-bottom: 1px solid var(--krds-border);
+  background: #fff;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+.krds-grid__th {
+  padding: 12px 14px;
+  font-size: 12px;
+  color: var(--krds-fg-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.krds-grid__th--time {
+  border-right: 1px solid var(--krds-border);
+}
+
+.krds-grid__body {
+  display: block;
+  max-height: 66vh;
+  overflow: auto;
+  background: #fff;
+}
+.krds-grid__row {
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  border-bottom: 1px solid var(--krds-border);
+}
+.krds-grid__row--now {
+  background: var(--krds-now);
+}
+.krds-grid__cell {
+  padding: 10px 14px;
+  display: flex;
+  align-items: center;
+  min-height: 52px;
+}
+.krds-grid__cell--time {
+  border-right: 1px solid var(--krds-border);
+  background: #fff;
+  position: sticky;
+  left: 0;
+  z-index: 1;
+}
+.krds-time-badge {
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.krds-empty {
+  padding: 24px;
+  font-size: 14px;
+  color: var(--krds-fg-muted);
+}
+
+/* ---- Chip list ---- */
+.krds-chiplist {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+}
+.krds-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid var(--krds-border);
+  background: #f9fafb;
+  border-radius: 999px;
+  padding: 6px 10px;
+  font-size: 13px;
+}
+.krds-chip__name {
+  font-weight: 600;
+}
+.krds-chip__meta {
+  color: var(--krds-fg-muted);
+  font-size: 12px;
+}
+
+.krds-tag {
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 999px;
+  font-size: 12px;
+  border: 1px solid var(--krds-border);
+  background: #fafafa;
+  color: var(--krds-fg-muted);
+}
+.krds-tag--muted {
+  opacity: 0.9;
+}
