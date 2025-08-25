@@ -1,5 +1,7 @@
 import React, { useEffect, useMemo, useState } from "react";
 import "../../styles/admin/applyApprove.scss";
+import left_chevron from "../../assets/chevron/left_chevronImg.svg";
+import { useNavigate } from "react-router-dom";
 
 /* ===== Types ===== */
 type ApplyStatus = "PENDING" | "APPROVED" | "REJECTED";
@@ -141,6 +143,7 @@ async function rejectAllOfStudent(
 
 /* ===== Component ===== */
 const AdminApplyApproveByStudent: React.FC = () => {
+  const navigate = useNavigate();
   const [month, setMonth] = useState<string>(() => {
     const d = new Date();
     return `${d.getFullYear()}-${pad2(d.getMonth() + 1)}`; // "YYYY-MM"
@@ -268,6 +271,11 @@ const AdminApplyApproveByStudent: React.FC = () => {
     <div className="krds-page krds-page--w400">
       <header className="krds-header">
         <div className="krds-parent">
+          <img
+            src={left_chevron}
+            alt="뒤로가기"
+            onClick={() => navigate("/admin/home")}
+          />
           <h1 className="krds-h1">근로 신청 승인(월)</h1>
           <p className="krds-desc">
             선택한 월에 **신청한 날짜만** 학생 카드로 표시
