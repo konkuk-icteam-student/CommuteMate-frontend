@@ -275,7 +275,7 @@ const AdminChangeApprove: React.FC = () => {
                     </div>
 
                     {it.note && (
-                      <div className="apply-note">메모: {it.note}</div>
+                      <div className="apply-note">수정사유: {it.note}</div>
                     )}
                     {!valid && (
                       <div className="apply-warn">
