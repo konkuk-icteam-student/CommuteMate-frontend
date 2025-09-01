@@ -118,29 +118,6 @@ async function fetchAppliesByStudent(
   return new Promise((res) => setTimeout(() => res(demo), 150));
 }
 
-async function approveDay(id: string): Promise<void> {
-  // POST /api/apply-requests/{id}/approve
-  return new Promise((res) => setTimeout(res, 120));
-}
-async function rejectDay(id: string): Promise<void> {
-  // POST /api/apply-requests/{id}/reject
-  return new Promise((res) => setTimeout(res, 120));
-}
-async function approveAllOfStudent(
-  studentId: string,
-  monthISO: string
-): Promise<void> {
-  // POST /api/apply-requests/approve-batch?studentId=...&month=YYYY-MM
-  return new Promise((res) => setTimeout(res, 160));
-}
-async function rejectAllOfStudent(
-  studentId: string,
-  monthISO: string
-): Promise<void> {
-  // POST /api/apply-requests/reject-batch?studentId=...&month=YYYY-MM
-  return new Promise((res) => setTimeout(res, 160));
-}
-
 /* ===== Component ===== */
 const AdminApplyApproveByStudent: React.FC = () => {
   const navigate = useNavigate();
@@ -184,20 +161,6 @@ const AdminApplyApproveByStudent: React.FC = () => {
         ),
       }))
     );
-    try {
-      await approveDay(dayId);
-    } catch {
-      // rollback
-      setCards((prev) =>
-        prev.map((stu) => ({
-          ...stu,
-          applications: stu.applications.map((app) =>
-            app.id === dayId ? { ...app, status: "PENDING" } : app
-          ),
-        }))
-      );
-      alert("승인 중 오류가 발생했습니다.");
-    }
   };
 
   const handleRejectOne = async (dayId: string) => {
@@ -209,19 +172,6 @@ const AdminApplyApproveByStudent: React.FC = () => {
         ),
       }))
     );
-    try {
-      await rejectDay(dayId);
-    } catch {
-      setCards((prev) =>
-        prev.map((stu) => ({
-          ...stu,
-          applications: stu.applications.map((app) =>
-            app.id === dayId ? { ...app, status: "PENDING" } : app
-          ),
-        }))
-      );
-      alert("반려 중 오류가 발생했습니다.");
-    }
   };
 
   const handleApproveAll = async (studentId: string) => {
@@ -240,11 +190,6 @@ const AdminApplyApproveByStudent: React.FC = () => {
           : stu
       )
     );
-    try {
-      await approveAllOfStudent(studentId, month);
-    } catch {
-      alert("일괄 승인 중 오류가 발생했습니다. 화면을 새로고침해주세요.");
-    }
   };
 
   const handleRejectAll = async (studentId: string) => {
@@ -260,11 +205,6 @@ const AdminApplyApproveByStudent: React.FC = () => {
           : stu
       )
     );
-    try {
-      await rejectAllOfStudent(studentId, month);
-    } catch {
-      alert("일괄 반려 중 오류가 발생했습니다. 화면을 새로고침해주세요.");
-    }
   };
 
   return (
