@@ -89,15 +89,6 @@ async function fetchMonthlyApplies(monthISO: string): Promise<FetchResult> {
   );
 }
 
-async function approveApply(id: string): Promise<void> {
-  // POST /api/applies/{id}/approve
-  return new Promise((res) => setTimeout(res, 120));
-}
-async function rejectApply(id: string): Promise<void> {
-  // POST /api/applies/{id}/reject
-  return new Promise((res) => setTimeout(res, 120));
-}
-
 /* ===== Component ===== */
 const AdminChangeApprove: React.FC = () => {
   const nav = useNavigate();
@@ -141,36 +132,6 @@ const AdminChangeApprove: React.FC = () => {
     });
     return Array.from(m.entries()).sort(([d1], [d2]) => d1.localeCompare(d2));
   }, [list]);
-
-  const handleApprove = async (id: string) => {
-    setItems((prev) =>
-      prev.map((x) => (x.id === id ? { ...x, status: "APPROVED" } : x))
-    );
-    try {
-      await approveApply(id);
-    } catch {
-      // 롤백
-      setItems((prev) =>
-        prev.map((x) => (x.id === id ? { ...x, status: "PENDING" } : x))
-      );
-      alert("승인 중 오류가 발생했습니다.");
-    }
-  };
-
-  const handleReject = async (id: string) => {
-    setItems((prev) =>
-      prev.map((x) => (x.id === id ? { ...x, status: "REJECTED" } : x))
-    );
-    try {
-      await rejectApply(id);
-    } catch {
-      // 롤백
-      setItems((prev) =>
-        prev.map((x) => (x.id === id ? { ...x, status: "PENDING" } : x))
-      );
-      alert("반려 중 오류가 발생했습니다.");
-    }
-  };
 
   return (
     <div className="krds-page krds-page--w400">
@@ -286,7 +247,6 @@ const AdminChangeApprove: React.FC = () => {
                     <div className="apply-actions">
                       <button
                         className="krds-btn"
-                        onClick={() => handleApprove(it.id)}
                         disabled={!pending || !valid}
                         title={
                           !valid
@@ -298,7 +258,6 @@ const AdminChangeApprove: React.FC = () => {
                       </button>
                       <button
                         className="krds-btn krds-btn--ghost"
-                        onClick={() => handleReject(it.id)}
                         disabled={!pending}
                       >
                         반려
