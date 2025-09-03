@@ -1,10 +1,10 @@
-import React, { useEffect, useMemo, useState } from "react";
-import "../../styles/admin/applyApprove.scss";
-import left_chevron from "../../assets/chevron/left_chevronImg.svg";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect, useMemo, useState } from 'react';
+import '../../styles/admin/applyApprove.scss';
+import left_chevron from '../../assets/chevron/left_chevronImg.svg';
+import { useNavigate } from 'react-router-dom';
 
 /* ===== Types ===== */
-type ApplyStatus = "PENDING" | "APPROVED" | "REJECTED";
+type ApplyStatus = 'PENDING' | 'APPROVED' | 'REJECTED';
 
 type StudentApply = {
   studentId: string;
@@ -22,94 +22,91 @@ type StudentApply = {
 /* ===== Helpers ===== */
 const pad2 = (n: number) => (n < 10 ? `0${n}` : `${n}`);
 const toMinutes = (hhmm: string) => {
-  const [h, m] = hhmm.split(":").map(Number);
+  const [h, m] = hhmm.split(':').map(Number);
   return h * 60 + m;
 };
-const validStart = toMinutes("09:00");
-const validEnd = toMinutes("17:30"); // inclusive boundary for 30-min slot end
+const validStart = toMinutes('09:00');
+const validEnd = toMinutes('17:30'); // inclusive boundary for 30-min slot end
 
 const isValidSlot = (slot: string) => {
   // "HH:MM–HH:MM"
-  const [a, b] = slot.split("–");
+  const [a, b] = slot.split('–');
   const s = toMinutes(a);
   const e = toMinutes(b);
   return s >= validStart && e <= validEnd && e - s >= 60;
 };
-const allValid = (slots: string[]) =>
-  slots.length > 0 && slots.every(isValidSlot);
+const allValid = (slots: string[]) => slots.length > 0 && slots.every(isValidSlot);
 
 /* ===== Mock APIs (교체 지점) ===== */
 // 관리자는 "월" 단위로 불러오기, 결과는 학생별 카드 구조
-async function fetchAppliesByStudent(
-  monthISO: string
-): Promise<StudentApply[]> {
+async function fetchAppliesByStudent(monthISO: string): Promise<StudentApply[]> {
   // GET /api/apply-requests?month=YYYY-MM&groupBy=student
   // 데모 데이터: 같은 month 내에서 "신청한 날짜만" 포함됨
   const demo: StudentApply[] = [
     {
-      studentId: "s1",
-      name: "최준서",
+      studentId: 's1',
+      name: '최준서',
       applications: [
         {
-          id: "a1",
+          id: 'a1',
           date: `${monthISO}-03`,
-          slots: ["09:00–11:30", "13:00–17:30"],
-          note: "",
-          status: "PENDING",
+          slots: ['09:00–11:30', '13:00–17:30'],
+          note: '',
+          status: 'PENDING',
           submittedAt: new Date().toISOString(),
         },
         {
-          id: "a2",
+          id: 'a2',
           date: `${monthISO}-11`,
-          slots: ["13:00–16:30"],
-          status: "PENDING",
+          slots: ['13:00–16:30'],
+          status: 'PENDING',
           submittedAt: new Date().toISOString(),
         },
         {
-          id: "a3",
+          id: 'a3',
           date: `${monthISO}-19`,
-          slots: ["09:00–11:30", "13:30–17:00"],
-          status: "PENDING",
+          slots: ['09:00–11:30', '13:30–17:00'],
+          status: 'PENDING',
           submittedAt: new Date().toISOString(),
         },
         {
-          id: "a4",
+          id: 'a4',
           date: `${monthISO}-26`,
-          slots: ["09:00–11:30"],
-          status: "PENDING",
+          slots: ['09:00–11:30'],
+          status: 'PENDING',
           submittedAt: new Date().toISOString(),
         },
       ],
     },
     {
-      studentId: "s2",
-      name: "이다민",
+      studentId: 's2',
+      name: '이다민',
       applications: [
         {
-          id: "a3",
+          id: 'a3',
           date: `${monthISO}-03`,
-          slots: ["13:00–17:30"],
-          status: "APPROVED",
+          slots: ['13:00–17:30'],
+          status: 'APPROVED',
           submittedAt: new Date().toISOString(),
         },
         {
-          id: "a4",
+          id: 'a4',
           date: `${monthISO}-05`,
-          slots: ["08:30–09:00"],
-          status: "PENDING",
+          slots: ['08:30–09:00'],
+          status: 'PENDING',
           submittedAt: new Date().toISOString(),
         }, // 유효범위 밖 슬롯 포함 → 경고
       ],
     },
     {
-      studentId: "s3",
-      name: "나은정",
+      studentId: 's3',
+      name: '나은정',
       applications: [
         {
-          id: "a5",
+          id: 'a5',
           date: `${monthISO}-10`,
-          slots: ["09:30–11:30", "13:00–16:30"],
-          status: "REJECTED",
+          slots: ['09:30–11:30', '13:00–16:30'],
+          status: 'REJECTED',
           submittedAt: new Date().toISOString(),
         },
       ],
@@ -127,7 +124,7 @@ const AdminApplyApproveByStudent: React.FC = () => {
   });
   const [loading, setLoading] = useState(false);
   const [cards, setCards] = useState<StudentApply[]>([]);
-  const [q, setQ] = useState("");
+  const [q, setQ] = useState('');
 
   useEffect(() => {
     (async () => {
@@ -157,7 +154,7 @@ const AdminApplyApproveByStudent: React.FC = () => {
       prev.map((stu) => ({
         ...stu,
         applications: stu.applications.map((app) =>
-          app.id === dayId ? { ...app, status: "APPROVED" } : app
+          app.id === dayId ? { ...app, status: 'APPROVED' } : app
         ),
       }))
     );
@@ -168,7 +165,7 @@ const AdminApplyApproveByStudent: React.FC = () => {
       prev.map((stu) => ({
         ...stu,
         applications: stu.applications.map((app) =>
-          app.id === dayId ? { ...app, status: "REJECTED" } : app
+          app.id === dayId ? { ...app, status: 'REJECTED' } : app
         ),
       }))
     );
@@ -182,8 +179,8 @@ const AdminApplyApproveByStudent: React.FC = () => {
           ? {
               ...stu,
               applications: stu.applications.map((app) =>
-                app.status === "PENDING" && allValid(app.slots)
-                  ? { ...app, status: "APPROVED" }
+                app.status === 'PENDING' && allValid(app.slots)
+                  ? { ...app, status: 'APPROVED' }
                   : app
               ),
             }
@@ -199,7 +196,7 @@ const AdminApplyApproveByStudent: React.FC = () => {
           ? {
               ...stu,
               applications: stu.applications.map((app) =>
-                app.status === "PENDING" ? { ...app, status: "REJECTED" } : app
+                app.status === 'PENDING' ? { ...app, status: 'REJECTED' } : app
               ),
             }
           : stu
@@ -211,15 +208,9 @@ const AdminApplyApproveByStudent: React.FC = () => {
     <div className="krds-page krds-page--w400">
       <header className="krds-header">
         <div className="krds-parent">
-          <img
-            src={left_chevron}
-            alt="뒤로가기"
-            onClick={() => navigate("/admin/home")}
-          />
+          <img src={left_chevron} alt="뒤로가기" onClick={() => navigate('/admin/home')} />
           <h1 className="krds-h1">근로 신청 승인(월)</h1>
-          <p className="krds-desc">
-            선택한 월에 **신청한 날짜만** 학생 카드로 표시
-          </p>
+          <p className="krds-desc">선택한 월에 **신청한 날짜만** 학생 카드로 표시</p>
         </div>
 
         <div className="krds-toolbar">
@@ -256,9 +247,7 @@ const AdminApplyApproveByStudent: React.FC = () => {
           filtered.map((stu) => {
             // 신청 요약: 총 신청일수 / PENDING 수
             const totalDays = stu.applications.length;
-            const pendingCount = stu.applications.filter(
-              (a) => a.status === "PENDING"
-            ).length;
+            const pendingCount = stu.applications.filter((a) => a.status === 'PENDING').length;
 
             return (
               <article key={stu.studentId} className="student-card">
@@ -267,9 +256,7 @@ const AdminApplyApproveByStudent: React.FC = () => {
                   <div className="student-meta">
                     <span className="meta-chip">신청일수 {totalDays}</span>
                     {pendingCount > 0 && (
-                      <span className="meta-chip meta-chip--pending">
-                        대기 {pendingCount}
-                      </span>
+                      <span className="meta-chip meta-chip--pending">대기 {pendingCount}</span>
                     )}
                   </div>
                 </div>
@@ -280,20 +267,16 @@ const AdminApplyApproveByStudent: React.FC = () => {
                     return (
                       <li
                         key={app.id}
-                        className={
-                          "apply-item" + (valid ? "" : " apply-item--warn")
-                        }
+                        className={'apply-item' + (valid ? '' : ' apply-item--warn')}
                       >
                         <div className="apply-row">
                           <div className="apply-date">{app.date}</div>
-                          <span
-                            className={`status status--${app.status.toLowerCase()}`}
-                          >
-                            {app.status === "PENDING"
-                              ? "대기"
-                              : app.status === "APPROVED"
-                              ? "승인"
-                              : "반려"}
+                          <span className={`status status--${app.status.toLowerCase()}`}>
+                            {app.status === 'PENDING'
+                              ? '대기'
+                              : app.status === 'APPROVED'
+                                ? '승인'
+                                : '반려'}
                           </span>
                         </div>
 
@@ -301,18 +284,14 @@ const AdminApplyApproveByStudent: React.FC = () => {
                           {app.slots.map((s) => (
                             <span
                               key={s}
-                              className={
-                                "slot" + (isValidSlot(s) ? "" : " slot--error")
-                              }
+                              className={'slot' + (isValidSlot(s) ? '' : ' slot--error')}
                             >
                               {s}
                             </span>
                           ))}
                         </div>
 
-                        {app.note && (
-                          <div className="apply-note">메모: {app.note}</div>
-                        )}
+                        {app.note && <div className="apply-note">메모: {app.note}</div>}
                         {!valid && (
                           <div className="apply-warn">
                             허용 시간(09:00–17:30) 밖 슬롯이 포함되어 있습니다.
@@ -323,19 +302,15 @@ const AdminApplyApproveByStudent: React.FC = () => {
                           <button
                             className="krds-btn"
                             onClick={() => handleApproveOne(app.id)}
-                            disabled={app.status !== "PENDING" || !valid}
-                            title={
-                              !valid
-                                ? "허용 범위 밖 신청은 승인할 수 없습니다."
-                                : ""
-                            }
+                            disabled={app.status !== 'PENDING' || !valid}
+                            title={!valid ? '허용 범위 밖 신청은 승인할 수 없습니다.' : ''}
                           >
                             승인
                           </button>
                           <button
                             className="krds-btn krds-btn--ghost"
                             onClick={() => handleRejectOne(app.id)}
-                            disabled={app.status !== "PENDING"}
+                            disabled={app.status !== 'PENDING'}
                           >
                             반려
                           </button>

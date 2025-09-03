@@ -1,20 +1,18 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import left_chevron from "../../assets/chevron/left_chevronImg.svg";
-import "../../styles/schedule/schedule.scss";
-import CTAButton from "../../components/CTAButton";
-import classNames from "classnames";
-import { addDays, startOfWeek } from "date-fns";
-import { MONTH_LIMIT, WEEK_LIMIT, INTERVAL } from "../../constants/global";
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import left_chevron from '../../assets/chevron/left_chevronImg.svg';
+import '../../styles/schedule/schedule.scss';
+import CTAButton from '../../components/CTAButton';
+import classNames from 'classnames';
+import { addDays, startOfWeek } from 'date-fns';
+import { MONTH_LIMIT, WEEK_LIMIT, INTERVAL } from '../../constants/global';
 
 const today = new Date();
 today.setDate(today.getDate() + INTERVAL);
 const YEAR = today.getFullYear();
 const TARGET_MONTH = today.getMonth();
 
-const getWeekDates = (
-  week: number
-): { label: string; date: Date; disabled: boolean }[] => {
+const getWeekDates = (week: number): { label: string; date: Date; disabled: boolean }[] => {
   const start = new Date(YEAR, TARGET_MONTH, 1); // 9월 1일 시작
   const base = addDays(start, (week - 1) * 7);
   const monday = startOfWeek(base, { weekStartsOn: 1 }); // 월요일 기준
@@ -37,7 +35,7 @@ const TIMES = Array.from({ length: 17 }, (_, i) => {
   const endHour = Math.floor(endMinutes / 60);
   const endMin = endMinutes % 60;
 
-  const pad = (n: number) => String(n).padStart(2, "0");
+  const pad = (n: number) => String(n).padStart(2, '0');
 
   const start = `${pad(startHour)}:${pad(startMin)}`;
   const end = `${pad(endHour)}:${pad(endMin)}`;
@@ -45,7 +43,7 @@ const TIMES = Array.from({ length: 17 }, (_, i) => {
   return `${start}~${end}`;
 });
 
-const DISABLED_TIMES = ["11:30~12:00", "12:00~12:30", "12:30~13:00"];
+const DISABLED_TIMES = ['11:30~12:00', '12:00~12:30', '12:30~13:00'];
 
 const ScheduleApply = () => {
   const navigate = useNavigate();
@@ -76,7 +74,7 @@ const ScheduleApply = () => {
   return (
     <div className="schedule-container">
       <div className="header">
-        <div className="back-button" onClick={() => navigate("/schedule")}>
+        <div className="back-button" onClick={() => navigate('/schedule')}>
           <img src={left_chevron} alt="뒤로가기" />
         </div>
         <h2 className="schedule-title">{TARGET_MONTH + 1}월 근로 시간 신청</h2>
@@ -86,7 +84,7 @@ const ScheduleApply = () => {
           <button
             key={week}
             onClick={() => setCurrentWeek(week)}
-            className={currentWeek === week ? "active" : ""}
+            className={currentWeek === week ? 'active' : ''}
           >
             {week}주차
           </button>
@@ -99,9 +97,7 @@ const ScheduleApply = () => {
           {dates.map((d, i) => (
             <div key={i} className="day-cell">
               <div className="date-label">{d.label}</div>
-              <div className="weekday-label">
-                {["월", "화", "수", "목", "금"][i]}
-              </div>
+              <div className="weekday-label">{['월', '화', '수', '목', '금'][i]}</div>
             </div>
           ))}
         </div>
@@ -116,7 +112,7 @@ const ScheduleApply = () => {
               return (
                 <div
                   key={timeKey}
-                  className={classNames("cell", {
+                  className={classNames('cell', {
                     selected: selected[timeKey],
                     disabled: isDisabled,
                   })}
@@ -132,23 +128,17 @@ const ScheduleApply = () => {
         ))}
       </div>
       <div className="summary">
-        <p
-          className={
-            parseFloat(getWeeklyHours(currentWeek)) > WEEK_LIMIT
-              ? "text-red"
-              : ""
-          }
-        >
+        <p className={parseFloat(getWeeklyHours(currentWeek)) > WEEK_LIMIT ? 'text-red' : ''}>
           {currentWeek}주차 근무 시간: {getWeeklyHours(currentWeek)}시간
         </p>
 
         <p
           className={
             parseFloat(getMonthlyHours()) > MONTH_LIMIT
-              ? "text-red"
+              ? 'text-red'
               : parseFloat(getMonthlyHours()) === MONTH_LIMIT
-              ? "text-green"
-              : ""
+                ? 'text-green'
+                : ''
           }
         >
           {TARGET_MONTH + 1}월 총 근무 시간: {getMonthlyHours()}시간
@@ -158,10 +148,10 @@ const ScheduleApply = () => {
         <CTAButton
           variant={
             parseFloat(getMonthlyHours()) !== MONTH_LIMIT
-              ? "secondary"
+              ? 'secondary'
               : parseFloat(getWeeklyHours(currentWeek)) > WEEK_LIMIT
-              ? "secondary"
-              : "primary"
+                ? 'secondary'
+                : 'primary'
           }
         >
           일괄 신청

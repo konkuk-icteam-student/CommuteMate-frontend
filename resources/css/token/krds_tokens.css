@@ -1,12 +1,9 @@
-
 @charset "utf-8";
 
 /* Do not edit directly */
 /* Generated on Mon, Dec 9, 2024, 10:32:10 AM GMT+9 */
 
-
 :root {
-
   /* PRIMITIVE */
   --krds-color-light-primary-5: #ecf2fe;
   --krds-color-light-primary-10: #d8e5fd;
@@ -448,11 +445,15 @@
   --krds-high-contrast-color-surface-gray-subtle: var(--krds-color-high-contrast-gray-90);
   --krds-high-contrast-color-surface-disabled: var(--krds-color-high-contrast-gray-70);
   --krds-high-contrast-color-surface-primary-subtler: var(--krds-color-high-contrast-primary-95);
-  --krds-high-contrast-color-surface-secondary-subtler: var(--krds-color-high-contrast-secondary-95);
+  --krds-high-contrast-color-surface-secondary-subtler: var(
+    --krds-color-high-contrast-secondary-95
+  );
   --krds-high-contrast-color-surface-danger-subtler: var(--krds-color-high-contrast-danger-95);
   --krds-high-contrast-color-surface-warning-subtler: var(--krds-color-high-contrast-warning-95);
   --krds-high-contrast-color-surface-success-subtler: var(--krds-color-high-contrast-success-95);
-  --krds-high-contrast-color-surface-information-subtler: var(--krds-color-high-contrast-information-95);
+  --krds-high-contrast-color-surface-information-subtler: var(
+    --krds-color-high-contrast-information-95
+  );
   --krds-high-contrast-color-surface-point-subtler: var(--krds-color-high-contrast-point-95);
   --krds-high-contrast-color-surface-white: var(--krds-color-high-contrast-gray-100);
   --krds-high-contrast-color-surface-inverse: var(--krds-color-high-contrast-gray-10);
@@ -469,7 +470,9 @@
   --krds-high-contrast-color-border-warning: var(--krds-color-high-contrast-warning-50);
   --krds-high-contrast-color-border-success-light: var(--krds-color-high-contrast-success-90);
   --krds-high-contrast-color-border-success: var(--krds-color-high-contrast-success-50);
-  --krds-high-contrast-color-border-information-light: var(--krds-color-high-contrast-information-90);
+  --krds-high-contrast-color-border-information-light: var(
+    --krds-color-high-contrast-information-90
+  );
   --krds-high-contrast-color-border-information: var(--krds-color-high-contrast-information-50);
   --krds-high-contrast-color-border-gray-dark: var(--krds-color-high-contrast-gray-40);
   --krds-high-contrast-color-border-primary: var(--krds-color-high-contrast-primary-50);
@@ -529,7 +532,9 @@
   --krds-high-contrast-color-icon-danger-static: var(--krds-color-high-contrast-danger-50);
   --krds-high-contrast-color-icon-warning-static: var(--krds-color-high-contrast-warning-50);
   --krds-high-contrast-color-icon-success-static: var(--krds-color-high-contrast-success-50);
-  --krds-high-contrast-color-icon-information-static: var(--krds-color-high-contrast-information-50);
+  --krds-high-contrast-color-icon-information-static: var(
+    --krds-color-high-contrast-information-50
+  );
   --krds-high-contrast-color-icon-gray-static: var(--krds-color-high-contrast-gray-80);
   --krds-high-contrast-color-link-default: var(--krds-color-high-contrast-primary-30);
   --krds-high-contrast-color-link-hover: var(--krds-color-high-contrast-primary-20);
@@ -537,10 +542,16 @@
   --krds-high-contrast-color-link-visited: #c49ff9;
   --krds-high-contrast-color-button-primary-fill: var(--krds-color-high-contrast-primary-50);
   --krds-high-contrast-color-button-primary-fill-hover: var(--krds-color-high-contrast-primary-60);
-  --krds-high-contrast-color-button-primary-fill-pressed: var(--krds-color-high-contrast-primary-70);
+  --krds-high-contrast-color-button-primary-fill-pressed: var(
+    --krds-color-high-contrast-primary-70
+  );
   --krds-high-contrast-color-button-secondary-fill: var(--krds-color-high-contrast-primary-95);
-  --krds-high-contrast-color-button-secondary-fill-hover: var(--krds-color-high-contrast-primary-90);
-  --krds-high-contrast-color-button-secondary-fill-pressed: var(--krds-color-high-contrast-primary-80);
+  --krds-high-contrast-color-button-secondary-fill-hover: var(
+    --krds-color-high-contrast-primary-90
+  );
+  --krds-high-contrast-color-button-secondary-fill-pressed: var(
+    --krds-color-high-contrast-primary-80
+  );
   --krds-high-contrast-color-button-secondary-border: var(--krds-color-high-contrast-primary-50);
   --krds-high-contrast-color-button-tertiary-fill: var(--krds-color-high-contrast-alpha-black0);
   --krds-high-contrast-color-button-tertiary-fill-hover: var(--krds-color-high-contrast-gray-95);
@@ -565,7 +576,9 @@
   --krds-high-contrast-color-element-primary-lighter: var(--krds-color-high-contrast-primary-95);
   --krds-high-contrast-color-element-primary-light: var(--krds-color-high-contrast-primary-90);
   --krds-high-contrast-color-element-primary: var(--krds-color-high-contrast-primary-50);
-  --krds-high-contrast-color-element-secondary-lighter: var(--krds-color-high-contrast-secondary-95);
+  --krds-high-contrast-color-element-secondary-lighter: var(
+    --krds-color-high-contrast-secondary-95
+  );
   --krds-high-contrast-color-element-secondary-light: var(--krds-color-high-contrast-secondary-90);
   --krds-high-contrast-color-element-secondary: var(--krds-color-high-contrast-secondary-60);
   --krds-high-contrast-color-element-point-lighter: var(--krds-color-high-contrast-point-95);
@@ -577,7 +590,9 @@
   --krds-high-contrast-color-element-warning: var(--krds-color-high-contrast-warning-30);
   --krds-high-contrast-color-element-success-lighter: var(--krds-color-high-contrast-success-95);
   --krds-high-contrast-color-element-success: var(--krds-color-high-contrast-success-50);
-  --krds-high-contrast-color-element-information-lighter: var(--krds-color-high-contrast-information-95);
+  --krds-high-contrast-color-element-information-lighter: var(
+    --krds-color-high-contrast-information-95
+  );
   --krds-high-contrast-color-element-information: var(--krds-color-high-contrast-information-50);
   --krds-high-contrast-color-element-inverse: var(--krds-color-high-contrast-gray-95);
   --krds-high-contrast-color-element-gray-dark: var(--krds-color-high-contrast-gray-40);
@@ -589,10 +604,14 @@
   --krds-high-contrast-color-action-secondary: var(--krds-color-light-alpha-black0);
   --krds-high-contrast-color-action-secondary-hover: var(--krds-color-high-contrast-secondary-95);
   --krds-high-contrast-color-action-secondary-pressed: var(--krds-color-high-contrast-secondary-90);
-  --krds-high-contrast-color-action-secondary-selected: var(--krds-color-high-contrast-secondary-95);
+  --krds-high-contrast-color-action-secondary-selected: var(
+    --krds-color-high-contrast-secondary-95
+  );
   --krds-high-contrast-color-action-secondary-on: var(--krds-color-high-contrast-alpha-black0);
   --krds-high-contrast-color-action-secondary-on-hover: var(--krds-color-high-contrast-gray-100);
-  --krds-high-contrast-color-action-secondary-on-pressed: var(--krds-color-high-contrast-secondary-90);
+  --krds-high-contrast-color-action-secondary-on-pressed: var(
+    --krds-color-high-contrast-secondary-90
+  );
   --krds-high-contrast-color-action-secondary-on-selected: var(--krds-color-high-contrast-gray-95);
   --krds-high-contrast-color-action-secondary-active: var(--krds-color-high-contrast-secondary-60);
   --krds-high-contrast-color-action-primary-active: var(--krds-color-high-contrast-primary-50);
@@ -786,5 +805,4 @@
   --krds-radius-xlarge1: var(--krds-number-7);
   --krds-radius-xlarge2: var(--krds-number-7);
   --krds-radius-max: var(--krds-number-max);
-
 }

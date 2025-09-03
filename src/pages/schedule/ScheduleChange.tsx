@@ -1,18 +1,16 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import left_chevron from "../../assets/chevron/left_chevronImg.svg";
-import "../../styles/schedule/schedule.scss";
-import CTAButton from "../../components/CTAButton";
-import classNames from "classnames";
-import { addDays, startOfWeek } from "date-fns";
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import left_chevron from '../../assets/chevron/left_chevronImg.svg';
+import '../../styles/schedule/schedule.scss';
+import CTAButton from '../../components/CTAButton';
+import classNames from 'classnames';
+import { addDays, startOfWeek } from 'date-fns';
 
 const today = new Date();
 const YEAR = today.getFullYear();
 const TARGET_MONTH = today.getMonth();
 
-const getWeekDates = (
-  week: number
-): { label: string; date: Date; disabled: boolean }[] => {
+const getWeekDates = (week: number): { label: string; date: Date; disabled: boolean }[] => {
   const start = new Date(YEAR, TARGET_MONTH, 1); // 9월 1일 시작
   const base = addDays(start, (week - 1) * 7);
   const monday = startOfWeek(base, { weekStartsOn: 1 }); // 월요일 기준
@@ -35,7 +33,7 @@ const TIMES = Array.from({ length: 17 }, (_, i) => {
   const endHour = Math.floor(endMinutes / 60);
   const endMin = endMinutes % 60;
 
-  const pad = (n: number) => String(n).padStart(2, "0");
+  const pad = (n: number) => String(n).padStart(2, '0');
 
   const start = `${pad(startHour)}:${pad(startMin)}`;
   const end = `${pad(endHour)}:${pad(endMin)}`;
@@ -43,7 +41,7 @@ const TIMES = Array.from({ length: 17 }, (_, i) => {
   return `${start}~${end}`;
 });
 
-const DISABLED_TIMES = ["11:30~12:00", "12:00~12:30", "12:30~13:00"];
+const DISABLED_TIMES = ['11:30~12:00', '12:00~12:30', '12:30~13:00'];
 
 const ScheduleChange = () => {
   const navigate = useNavigate();
@@ -74,7 +72,7 @@ const ScheduleChange = () => {
   return (
     <div className="schedule-container">
       <div className="header">
-        <div className="back-button" onClick={() => navigate("/schedule")}>
+        <div className="back-button" onClick={() => navigate('/schedule')}>
           <img src={left_chevron} alt="뒤로가기" />
         </div>
         <h2 className="schedule-title">{TARGET_MONTH + 1}월 근로 시간 변경</h2>
@@ -85,7 +83,7 @@ const ScheduleChange = () => {
           <button
             key={week}
             onClick={() => setCurrentWeek(week)}
-            className={currentWeek === week ? "active" : ""}
+            className={currentWeek === week ? 'active' : ''}
           >
             {week}주차
           </button>
@@ -98,9 +96,7 @@ const ScheduleChange = () => {
           {dates.map((d, i) => (
             <div key={i} className="day-cell">
               <div className="date-label">{d.label}</div>
-              <div className="weekday-label">
-                {["월", "화", "수", "목", "금"][i]}
-              </div>
+              <div className="weekday-label">{['월', '화', '수', '목', '금'][i]}</div>
             </div>
           ))}
         </div>
@@ -115,7 +111,7 @@ const ScheduleChange = () => {
               return (
                 <div
                   key={timeKey}
-                  className={classNames("cell", {
+                  className={classNames('cell', {
                     selected: selected[timeKey],
                     disabled: isDisabled,
                   })}
@@ -131,21 +127,17 @@ const ScheduleChange = () => {
         ))}
       </div>
       <div className="summary">
-        <p
-          className={
-            parseFloat(getWeeklyHours(currentWeek)) >= 13.5 ? "text-red" : ""
-          }
-        >
+        <p className={parseFloat(getWeeklyHours(currentWeek)) >= 13.5 ? 'text-red' : ''}>
           {currentWeek}주차 근무 시간: {getWeeklyHours(currentWeek)}시간
         </p>
 
         <p
           className={
             parseFloat(getMonthlyHours()) >= 27.5
-              ? "text-red"
+              ? 'text-red'
               : parseFloat(getMonthlyHours()) === 27
-              ? "text-green"
-              : ""
+                ? 'text-green'
+                : ''
           }
         >
           {TARGET_MONTH + 1}월 총 근무 시간: {getMonthlyHours()}시간
