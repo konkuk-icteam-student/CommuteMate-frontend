@@ -28,4 +28,3 @@ jobs:
 
       # ESLint (선택 항목)
       - run: yarn lint
-      # 이거뭐야
