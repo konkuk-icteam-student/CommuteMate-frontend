@@ -1,8 +1,8 @@
 // KRDSWorkSchedulePage.tsx
-import React, { useEffect, useMemo, useState } from "react";
-import "../../styles/admin/checkTime.scss";
-import { useNavigate } from "react-router-dom";
-import left_chevron from "../../assets/chevron/left_chevronImg.svg";
+import React, { useEffect, useMemo, useState } from 'react';
+import '../../styles/admin/checkTime.scss';
+import { useNavigate } from 'react-router-dom';
+import left_chevron from '../../assets/chevron/left_chevronImg.svg';
 
 /** ---------- Types ---------- */
 type StudentShift = {
@@ -22,17 +22,13 @@ type FetchResult = {
 
 /** ---------- Time Helpers ---------- */
 const toMinutes = (hhmm: string) => {
-  const [h, m] = hhmm.split(":").map(Number);
+  const [h, m] = hhmm.split(':').map(Number);
   return h * 60 + m;
 };
 const pad2 = (n: number) => (n < 10 ? `0${n}` : `${n}`);
 const fmt = (min: number) => `${pad2(Math.floor(min / 60))}:${pad2(min % 60)}`;
 
-const generateIntervals = (
-  dayStart = "09:00",
-  dayEnd = "17:30",
-  stepMin = 30
-) => {
+const generateIntervals = (dayStart = '09:00', dayEnd = '17:30', stepMin = 30) => {
   const start = toMinutes(dayStart);
   const end = toMinutes(dayEnd);
   const out: { startMin: number; endMin: number; label: string }[] = [];
@@ -44,11 +40,7 @@ const generateIntervals = (
   return out;
 };
 
-const isOnDuty = (
-  shift: StudentShift,
-  intervalStart: number,
-  intervalEnd: number
-) => {
+const isOnDuty = (shift: StudentShift, intervalStart: number, intervalEnd: number) => {
   const s = toMinutes(shift.start);
   const e = toMinutes(shift.end);
   return s <= intervalStart && intervalEnd <= e;
@@ -71,41 +63,39 @@ const isNowInInterval = (intervalStart: number, intervalEnd: number) => {
 async function fetchShifts(dateISO: string): Promise<FetchResult> {
   const demo: StudentShift[] = [
     {
-      studentId: "s1",
-      name: "최준서",
-      role: "근로학생",
-      location: "정보운영팀",
-      start: "09:00",
-      end: "17:30",
+      studentId: 's1',
+      name: '최준서',
+      role: '근로학생',
+      location: '정보운영팀',
+      start: '09:00',
+      end: '17:30',
     },
     {
-      studentId: "s2",
-      name: "이다민",
-      role: "근로학생",
-      location: "정보운영팀",
-      start: "13:00",
-      end: "15:30",
+      studentId: 's2',
+      name: '이다민',
+      role: '근로학생',
+      location: '정보운영팀',
+      start: '13:00',
+      end: '15:30',
     },
     {
-      studentId: "s3",
-      name: "나은정",
-      role: "근로학생",
-      location: "정보운영팀",
-      start: "13:00",
-      end: "17:30",
+      studentId: 's3',
+      name: '나은정',
+      role: '근로학생',
+      location: '정보운영팀',
+      start: '13:00',
+      end: '17:30',
     },
     {
-      studentId: "s4",
-      name: "김민우",
-      role: "근로학생",
-      location: "정보운영팀",
-      start: "09:30",
-      end: "14:30",
+      studentId: 's4',
+      name: '김민우',
+      role: '근로학생',
+      location: '정보운영팀',
+      start: '09:30',
+      end: '14:30',
     },
   ];
-  const locs = Array.from(
-    new Set(demo.map((d) => d.location!).filter(Boolean))
-  );
+  const locs = Array.from(new Set(demo.map((d) => d.location!).filter(Boolean)));
   return new Promise((res) =>
     setTimeout(() => res({ date: dateISO, shifts: demo, locations: locs }), 150)
   );
@@ -118,12 +108,12 @@ const AdminCheckTime: React.FC = () => {
   const navigate = useNavigate();
 
   // 필터 상태
-  const [q, setQ] = useState("");
-  const [location, setLocation] = useState<string>("ALL");
+  const [q, setQ] = useState('');
+  const [location, setLocation] = useState<string>('ALL');
   const [showOnlyBusy, setShowOnlyBusy] = useState(false);
 
   // 30분 간격 구간(09:00–17:30)
-  const intervals = useMemo(() => generateIntervals("09:00", "17:30", 30), []);
+  const intervals = useMemo(() => generateIntervals('09:00', '17:30', 30), []);
 
   useEffect(() => {
     (async () => {
@@ -142,7 +132,7 @@ const AdminCheckTime: React.FC = () => {
     const nameQ = q.trim().toLowerCase();
     return shifts.filter((s) => {
       const passName = !nameQ || s.name.toLowerCase().includes(nameQ);
-      const passLoc = location === "ALL" || s.location === location;
+      const passLoc = location === 'ALL' || s.location === location;
       return passName && passLoc;
     });
   }, [raw, q, location]);
@@ -154,20 +144,18 @@ const AdminCheckTime: React.FC = () => {
         return !(intv.startMin >= 690 && intv.endMin <= 780);
       })
       .map((intv) => {
-        const people = filtered.filter((s) =>
-          isOnDuty(s, intv.startMin, intv.endMin)
-        );
+        const people = filtered.filter((s) => isOnDuty(s, intv.startMin, intv.endMin));
         return { ...intv, people };
       })
       .filter((r) => (showOnlyBusy ? r.people.length > 0 : true));
   }, [intervals, filtered, showOnlyBusy]);
 
-  const locations = useMemo(() => ["ALL", ...(raw?.locations ?? [])], [raw]);
+  const locations = useMemo(() => ['ALL', ...(raw?.locations ?? [])], [raw]);
 
   const scrollToNow = () => {
     if (date !== todayISO()) return;
-    const el = document.querySelector(".krds-grid__row--now");
-    if (el) el.scrollIntoView({ block: "center", behavior: "smooth" });
+    const el = document.querySelector('.krds-grid__row--now');
+    if (el) el.scrollIntoView({ block: 'center', behavior: 'smooth' });
   };
 
   const isToday = date === todayISO();
@@ -177,15 +165,9 @@ const AdminCheckTime: React.FC = () => {
       {/* Page Title */}
       <header className="krds-header">
         <div className="krds-parent">
-          <img
-            src={left_chevron}
-            alt="뒤로가기"
-            onClick={() => navigate("/admin/home")}
-          />
+          <img src={left_chevron} alt="뒤로가기" onClick={() => navigate('/admin/home')} />
           <h1 className="krds-h1">시간대별 근무 현황</h1>
-          <p className="krds-desc">
-            09:00–17:30 사이 각 30분 구간에 근무 중인 학생을 확인합니다.
-          </p>
+          <p className="krds-desc">09:00–17:30 사이 각 30분 구간에 근무 중인 학생을 확인합니다.</p>
         </div>
 
         <div className="krds-toolbar">
@@ -210,7 +192,7 @@ const AdminCheckTime: React.FC = () => {
             >
               {locations.map((loc) => (
                 <option key={loc} value={loc}>
-                  {loc === "ALL" ? "전체" : loc}
+                  {loc === 'ALL' ? '전체' : loc}
                 </option>
               ))}
             </select>
@@ -241,7 +223,7 @@ const AdminCheckTime: React.FC = () => {
             onClick={scrollToNow}
             type="button"
             disabled={!isToday}
-            title={isToday ? "현재 시간 구간으로 이동" : "오늘 날짜에서만 동작"}
+            title={isToday ? '현재 시간 구간으로 이동' : '오늘 날짜에서만 동작'}
           >
             지금 시간으로
           </button>
@@ -266,11 +248,9 @@ const AdminCheckTime: React.FC = () => {
             {!loading &&
               rows.map((r) => {
                 const nowClass =
-                  isToday && isNowInInterval(r.startMin, r.endMin)
-                    ? " krds-grid__row--now"
-                    : "";
+                  isToday && isNowInInterval(r.startMin, r.endMin) ? ' krds-grid__row--now' : '';
                 return (
-                  <div className={"krds-grid__row" + nowClass} key={r.label}>
+                  <div className={'krds-grid__row' + nowClass} key={r.label}>
                     <div className="krds-grid__cell krds-grid__cell--time">
                       <span aria-hidden="true" className="krds-time-badge">
                         {r.label}
@@ -279,29 +259,21 @@ const AdminCheckTime: React.FC = () => {
                     </div>
                     <div className="krds-grid__cell">
                       {r.people.length === 0 ? (
-                        <span className="krds-tag krds-tag--muted">
-                          근무자 없음
-                        </span>
+                        <span className="krds-tag krds-tag--muted">근무자 없음</span>
                       ) : (
                         <ul className="krds-chiplist">
                           {r.people.map((p) => (
                             <li
                               key={p.studentId}
                               className="krds-chip"
-                              title={`${p.name} (${p.role ?? "역할 없음"}) • ${
-                                p.location ?? "장소 미정"
+                              title={`${p.name} (${p.role ?? '역할 없음'}) • ${
+                                p.location ?? '장소 미정'
                               }`}
                             >
                               <span className="krds-chip__name">{p.name}</span>
-                              {p.role && (
-                                <span className="krds-chip__meta">
-                                  {p.role}
-                                </span>
-                              )}
+                              {p.role && <span className="krds-chip__meta">{p.role}</span>}
                               {p.location && (
-                                <span className="krds-chip__meta">
-                                  · {p.location}
-                                </span>
+                                <span className="krds-chip__meta">· {p.location}</span>
                               )}
                             </li>
                           ))}

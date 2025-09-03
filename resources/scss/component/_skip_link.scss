@@ -11,14 +11,13 @@
   --krds-skip-link-color-text: var(--krds-#{$mode}-color-text-basic-inverse);
 }
 
-
 //모드 설정
 $mode-setting: light;
 
 #krds-skip-link {
   @include skip-link-size-variable();
   @include skip-link-color-variable(#{$mode-setting});
-  
+
   position: fixed;
   top: 0;
   left: 0;
