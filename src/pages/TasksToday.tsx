@@ -56,14 +56,18 @@ const TasksToday = () => {
         {amTasks.length > 0 && (
           <>
             <h4 className="text-[15px] font-medium text-[#495057] mt-4 mb-2">오전</h4>
-            <ul className="list-none p-0 m-0 flex flex-col gap-4">{amTasks.map((task) => renderTaskItem(task))}</ul>
+            <ul className="list-none p-0 m-0 flex flex-col gap-4">
+              {amTasks.map((task) => renderTaskItem(task))}
+            </ul>
           </>
         )}
 
         {pmTasks.length > 0 && (
           <>
             <h4 className="text-[15px] font-medium text-[#495057] mt-4 mb-2">오후</h4>
-            <ul className="list-none p-0 m-0 flex flex-col gap-4">{pmTasks.map((task) => renderTaskItem(task))}</ul>
+            <ul className="list-none p-0 m-0 flex flex-col gap-4">
+              {pmTasks.map((task) => renderTaskItem(task))}
+            </ul>
           </>
         )}
       </>
@@ -110,10 +114,22 @@ const TasksToday = () => {
         {filtered.map((task) => (
           <li key={task.id}>
             <label className="flex items-center gap-3 text-base cursor-pointer">
-              <input type="checkbox" checked={task.checked} onChange={() => toggleCheck(task.id)} className="w-5 h-5 accent-[#4d7cfe] cursor-pointer" />
-              <span className={`text-[#495057] transition-[color,text-decoration] duration-200 ${task.checked ? 'text-[#adb5bd] line-through' : ''}`}>{task.text}</span>
+              <input
+                type="checkbox"
+                checked={task.checked}
+                onChange={() => toggleCheck(task.id)}
+                className="w-5 h-5 accent-[#4d7cfe] cursor-pointer"
+              />
+              <span
+                className={`text-[#495057] transition-[color,text-decoration] duration-200 ${task.checked ? 'text-[#adb5bd] line-through' : ''}`}
+              >
+                {task.text}
+              </span>
               {deletable && (
-                <button className="ml-auto bg-transparent border-0 text-base cursor-pointer text-[#d32f2f] hover:opacity-80" onClick={() => deleteTask(task.id)}>
+                <button
+                  className="ml-auto bg-transparent border-0 text-base cursor-pointer text-[#d32f2f] hover:opacity-80"
+                  onClick={() => deleteTask(task.id)}
+                >
                   ❌
                 </button>
               )}
@@ -127,10 +143,22 @@ const TasksToday = () => {
   const renderTaskItem = (task: Task, deletable = false) => (
     <li key={task.id}>
       <label className="flex items-center gap-3 text-base cursor-pointer">
-        <input type="checkbox" checked={task.checked} onChange={() => toggleCheck(task.id)} className="w-5 h-5 accent-[#4d7cfe] cursor-pointer" />
-        <span className={`text-[#495057] transition-[color,text-decoration] duration-200 ${task.checked ? 'text-[#adb5bd] line-through' : ''}`}>{task.text}</span>
+        <input
+          type="checkbox"
+          checked={task.checked}
+          onChange={() => toggleCheck(task.id)}
+          className="w-5 h-5 accent-[#4d7cfe] cursor-pointer"
+        />
+        <span
+          className={`text-[#495057] transition-[color,text-decoration] duration-200 ${task.checked ? 'text-[#adb5bd] line-through' : ''}`}
+        >
+          {task.text}
+        </span>
         {deletable && (
-          <button className="ml-auto bg-transparent border-0 text-base cursor-pointer text-[#d32f2f] hover:opacity-80" onClick={() => deleteTask(task.id)}>
+          <button
+            className="ml-auto bg-transparent border-0 text-base cursor-pointer text-[#d32f2f] hover:opacity-80"
+            onClick={() => deleteTask(task.id)}
+          >
             ❌
           </button>
         )}
@@ -142,11 +170,15 @@ const TasksToday = () => {
     <div className="min-h-[calc(var(--vh,1vh)*100)] w-screen bg-[#f8f9fa] flex justify-center items-center font-['Pretendard_GOV',sans-serif]">
       <div className="bg-white py-10 px-[30px] rounded-2xl shadow-[0_6px_20px_rgba(0,0,0,0.05)] w-full max-w-[400px] relative">
         <div className="flex items-center gap-2 mb-6 text-[#212121]">
-          <button className="bg-transparent border-0 p-0 cursor-pointer" onClick={() => navigate('/home')}>
+          <button
+            className="bg-transparent border-0 p-0 cursor-pointer"
+            onClick={() => navigate('/home')}
+          >
             <img src={left_chevron} alt="뒤로가기" className="w-6 h-6" />
           </button>
           <h2 className="text-[25px] font-semibold text-[#212121]">
-            오늘 할 일 <span className="text-base font-normal text-[#868e96] ml-2"> {getTodayInfo()}</span>
+            오늘 할 일{' '}
+            <span className="text-base font-normal text-[#868e96] ml-2"> {getTodayInfo()}</span>
           </h2>
         </div>
 
@@ -166,7 +198,12 @@ const TasksToday = () => {
             onChange={(e) => setNewTaskText(e.target.value)}
             className="flex-1 py-2 px-3 text-sm border border-[#dee2e6] rounded-lg outline-none focus:border-[#4d7cfe] focus:shadow-[0_0_0_2px_rgba(77,124,254,0.2)]"
           />
-          <button onClick={addTask} className="bg-[#4d7cfe] text-white py-2 px-4 border-0 rounded-lg text-sm font-semibold cursor-pointer hover:bg-[#375de4]">추가</button>
+          <button
+            onClick={addTask}
+            className="bg-[#4d7cfe] text-white py-2 px-4 border-0 rounded-lg text-sm font-semibold cursor-pointer hover:bg-[#375de4]"
+          >
+            추가
+          </button>
         </div>
       </div>
     </div>

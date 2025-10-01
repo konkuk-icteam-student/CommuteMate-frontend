@@ -74,7 +74,9 @@ const ScheduleChange = () => {
         <div className="mb-4 cursor-pointer overflow-hidden" onClick={() => navigate('/schedule')}>
           <img src={left_chevron} alt="뒤로가기" className="w-6 h-6" />
         </div>
-        <h2 className="text-[22px] font-bold text-[#212529] mb-6 text-center">{TARGET_MONTH + 1}월 근로 시간 변경</h2>
+        <h2 className="text-[22px] font-bold text-[#212529] mb-6 text-center">
+          {TARGET_MONTH + 1}월 근로 시간 변경
+        </h2>
       </div>
 
       <div className="flex justify-center gap-1.5 mb-6">
@@ -98,14 +100,18 @@ const ScheduleChange = () => {
           {dates.map((d, i) => (
             <div key={i} className="flex-1 border-r border-[#dee2e6] p-2 text-center bg-[#f1f3f5]">
               <div className="text-xs text-[#868e96]">{d.label}</div>
-              <div className="text-sm font-semibold text-[#212529]">{['월', '화', '수', '목', '금'][i]}</div>
+              <div className="text-sm font-semibold text-[#212529]">
+                {['월', '화', '수', '목', '금'][i]}
+              </div>
             </div>
           ))}
         </div>
 
         {TIMES.map((time) => (
           <div key={time} className="flex border-t border-[#dee2e6]">
-            <div className="w-[100px] min-w-[90px] text-[13px] font-medium bg-[#f1f3f5] text-[#212529] p-2 text-center border-r border-[#dee2e6]">{time}</div>
+            <div className="w-[100px] min-w-[90px] text-[13px] font-medium bg-[#f1f3f5] text-[#212529] p-2 text-center border-r border-[#dee2e6]">
+              {time}
+            </div>
             {dates.map((d) => {
               const timeKey = `${currentWeek}-${d.label}-${time}`;
               const isDisabled = d.disabled || DISABLED_TIMES.includes(time);
@@ -133,7 +139,11 @@ const ScheduleChange = () => {
         ))}
       </div>
       <div className="text-center text-sm mb-6">
-        <p className={classNames('my-1.5', { 'text-[#d32f2f] font-semibold': parseFloat(getWeeklyHours(currentWeek)) >= 13.5 })}>
+        <p
+          className={classNames('my-1.5', {
+            'text-[#d32f2f] font-semibold': parseFloat(getWeeklyHours(currentWeek)) >= 13.5,
+          })}
+        >
           {currentWeek}주차 근무 시간: {getWeeklyHours(currentWeek)}시간
         </p>
 

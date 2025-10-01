@@ -57,7 +57,10 @@ const AdminTimeStatus = () => {
   return (
     <div className="w-full h-[100dvh] p-6 bg-[#f8f9fa] font-['Pretendard_GOV',sans-serif]">
       <div className="flex items-center gap-2 mb-6">
-        <button className="bg-transparent border-0 p-0 cursor-pointer" onClick={() => navigate('/admin/home')}>
+        <button
+          className="bg-transparent border-0 p-0 cursor-pointer"
+          onClick={() => navigate('/admin/home')}
+        >
           <img src={left_chevron} alt="뒤로가기" className="w-6 h-6" />
         </button>
         <h1 className="text-xl font-semibold text-[#212121]">근로학생 근무시간 통계</h1>
@@ -93,7 +96,10 @@ const AdminTimeStatus = () => {
 
         <div className="flex flex-col gap-3">
           {activeUser.weeklyRecords.map((record, idx) => (
-            <div key={idx} className="bg-white rounded-xl p-4 shadow-[0_2px_6px_rgba(0,0,0,0.03)] flex justify-between items-center">
+            <div
+              key={idx}
+              className="bg-white rounded-xl p-4 shadow-[0_2px_6px_rgba(0,0,0,0.03)] flex justify-between items-center"
+            >
               <div className="text-sm text-[#343a40]">{record.week}</div>
               <div className="text-base font-semibold text-[#1d4ed8]">{fmt(record.minutes)}</div>
             </div>
