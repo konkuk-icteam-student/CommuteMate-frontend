@@ -1,6 +1,5 @@
 // KRDSWorkSchedulePage.tsx
 import React, { useEffect, useMemo, useState } from 'react';
-import '../../styles/admin/checkTime.scss';
 import { useNavigate } from 'react-router-dom';
 import left_chevron from '../../assets/chevron/left_chevronImg.svg';
 

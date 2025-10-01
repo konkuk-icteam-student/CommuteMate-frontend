@@ -1,6 +1,4 @@
-@import '../resources/scss/common/common.scss';
-@import '../resources/scss/component/button';
-@import '../resources/scss/component/input';
+@import 'tailwindcss';
 
 /* Pretendard GOV Regular (400) */
 @font-face {
@@ -39,17 +37,9 @@
 }
 
 #root {
-  width: 100%;
-  max-width: 400px;
-  height: 100vh;
-  background-color: #f8f9fa;
-  margin: 0 auto;
+  @apply w-full max-w-[400px] h-screen bg-[#f8f9fa] mx-auto flex justify-center items-center text-white;
   font-family: 'Pretendard GOV', sans-serif;
   font-weight: 400;
-  color: #fff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   --krds-fg: #1b1b1b;
   --krds-fg-muted: #6b7280;
   --krds-bg: #ffffff;

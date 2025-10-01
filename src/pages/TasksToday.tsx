@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import left_chevron from '../assets/chevron/left_chevronImg.svg';
-import '../styles/tasks-today.scss';
 
 type Task = {
   id: number;
@@ -52,19 +51,19 @@ const TasksToday = () => {
 
     return (
       <>
-        <h3 className="task-section-title">정기 업무</h3>
+        <h3 className="text-lg font-semibold text-[#212529] mt-6 mb-3">정기 업무</h3>
 
         {amTasks.length > 0 && (
           <>
-            <h4 className="task-subtitle">오전</h4>
-            <ul className="tasks-list">{amTasks.map((task) => renderTaskItem(task))}</ul>
+            <h4 className="text-[15px] font-medium text-[#495057] mt-4 mb-2">오전</h4>
+            <ul className="list-none p-0 m-0 flex flex-col gap-4">{amTasks.map((task) => renderTaskItem(task))}</ul>
           </>
         )}
 
         {pmTasks.length > 0 && (
           <>
-            <h4 className="task-subtitle">오후</h4>
-            <ul className="tasks-list">{pmTasks.map((task) => renderTaskItem(task))}</ul>
+            <h4 className="text-[15px] font-medium text-[#495057] mt-4 mb-2">오후</h4>
+            <ul className="list-none p-0 m-0 flex flex-col gap-4">{pmTasks.map((task) => renderTaskItem(task))}</ul>
           </>
         )}
       </>
@@ -106,15 +105,15 @@ const TasksToday = () => {
 
   const renderTasks = (title: string, filtered: Task[], deletable = false) => (
     <>
-      <h3 className="task-section-title">{title}</h3>
-      <ul className="tasks-list">
+      <h3 className="text-lg font-semibold text-[#212529] mt-6 mb-3">{title}</h3>
+      <ul className="list-none p-0 m-0 flex flex-col gap-4">
         {filtered.map((task) => (
-          <li key={task.id} className="task-item">
-            <label className="task-label">
-              <input type="checkbox" checked={task.checked} onChange={() => toggleCheck(task.id)} />
-              <span className={`task-text ${task.checked ? 'checked' : ''}`}>{task.text}</span>
+          <li key={task.id}>
+            <label className="flex items-center gap-3 text-base cursor-pointer">
+              <input type="checkbox" checked={task.checked} onChange={() => toggleCheck(task.id)} className="w-5 h-5 accent-[#4d7cfe] cursor-pointer" />
+              <span className={`text-[#495057] transition-[color,text-decoration] duration-200 ${task.checked ? 'text-[#adb5bd] line-through' : ''}`}>{task.text}</span>
               {deletable && (
-                <button className="delete-button" onClick={() => deleteTask(task.id)}>
+                <button className="ml-auto bg-transparent border-0 text-base cursor-pointer text-[#d32f2f] hover:opacity-80" onClick={() => deleteTask(task.id)}>
                   ❌
                 </button>
               )}
@@ -126,12 +125,12 @@ const TasksToday = () => {
   );
 
   const renderTaskItem = (task: Task, deletable = false) => (
-    <li key={task.id} className="task-item">
-      <label className="task-label">
-        <input type="checkbox" checked={task.checked} onChange={() => toggleCheck(task.id)} />
-        <span className={`task-text ${task.checked ? 'checked' : ''}`}>{task.text}</span>
+    <li key={task.id}>
+      <label className="flex items-center gap-3 text-base cursor-pointer">
+        <input type="checkbox" checked={task.checked} onChange={() => toggleCheck(task.id)} className="w-5 h-5 accent-[#4d7cfe] cursor-pointer" />
+        <span className={`text-[#495057] transition-[color,text-decoration] duration-200 ${task.checked ? 'text-[#adb5bd] line-through' : ''}`}>{task.text}</span>
         {deletable && (
-          <button className="delete-button" onClick={() => deleteTask(task.id)}>
+          <button className="ml-auto bg-transparent border-0 text-base cursor-pointer text-[#d32f2f] hover:opacity-80" onClick={() => deleteTask(task.id)}>
             ❌
           </button>
         )}
@@ -140,14 +139,14 @@ const TasksToday = () => {
   );
 
   return (
-    <div className="tasks-container">
-      <div className="tasks-box">
-        <div className="header">
-          <div className="back-button" onClick={() => navigate('/home')}>
-            <img src={left_chevron} alt="뒤로가기" />
-          </div>
-          <h2>
-            오늘 할 일 <span className="today-date"> {getTodayInfo()}</span>
+    <div className="min-h-[calc(var(--vh,1vh)*100)] w-screen bg-[#f8f9fa] flex justify-center items-center font-['Pretendard_GOV',sans-serif]">
+      <div className="bg-white py-10 px-[30px] rounded-2xl shadow-[0_6px_20px_rgba(0,0,0,0.05)] w-full max-w-[400px] relative">
+        <div className="flex items-center gap-2 mb-6 text-[#212121]">
+          <button className="bg-transparent border-0 p-0 cursor-pointer" onClick={() => navigate('/home')}>
+            <img src={left_chevron} alt="뒤로가기" className="w-6 h-6" />
+          </button>
+          <h2 className="text-[25px] font-semibold text-[#212121]">
+            오늘 할 일 <span className="text-base font-normal text-[#868e96] ml-2"> {getTodayInfo()}</span>
           </h2>
         </div>
 
@@ -159,14 +158,15 @@ const TasksToday = () => {
           true
         )}
 
-        <div className="task-add-form">
+        <div className="flex gap-2 mt-4">
           <input
             type="text"
             placeholder="비정기 업무 추가"
             value={newTaskText}
             onChange={(e) => setNewTaskText(e.target.value)}
+            className="flex-1 py-2 px-3 text-sm border border-[#dee2e6] rounded-lg outline-none focus:border-[#4d7cfe] focus:shadow-[0_0_0_2px_rgba(77,124,254,0.2)]"
           />
-          <button onClick={addTask}>추가</button>
+          <button onClick={addTask} className="bg-[#4d7cfe] text-white py-2 px-4 border-0 rounded-lg text-sm font-semibold cursor-pointer hover:bg-[#375de4]">추가</button>
         </div>
       </div>
     </div>
