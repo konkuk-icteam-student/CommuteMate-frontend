@@ -1,8 +1,8 @@
-import { useState } from "react";
+import { useState } from 'react';
 
 export const useUserForm = () => {
-  const [ID, setID] = useState("");
-  const [password, setPassword] = useState("");
+  const [ID, setID] = useState('');
+  const [password, setPassword] = useState('');
 
   const isFormFilled = !!(ID && password);
 

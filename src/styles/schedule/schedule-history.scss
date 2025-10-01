@@ -3,7 +3,7 @@
   height: 100dvh;
   padding: 24px;
   background-color: #f8f9fa;
-  font-family: "Pretendard GOV", sans-serif;
+  font-family: 'Pretendard GOV', sans-serif;
 
   .header {
     display: flex;
@@ -114,7 +114,7 @@
     }
 
     &.is-active,
-    &[aria-selected="true"] {
+    &[aria-selected='true'] {
       background-color: #1d4ed8;
       color: #fff;
       border-color: transparent;

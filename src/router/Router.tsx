@@ -1,89 +1,85 @@
-import {
-  createBrowserRouter,
-  RouterProvider,
-  Navigate,
-} from "react-router-dom";
+import { createBrowserRouter, RouterProvider, Navigate } from 'react-router-dom';
 
-import LogIn from "../pages/LogIn";
-import Register from "../pages/Register";
-import Home from "../pages/Home";
-import TasksToday from "../pages/TasksToday";
-import CheckIn from "../pages/CheckIn";
-import ScheduleApply from "../pages/schedule/ScheduleApply";
-import ScheduleChange from "../pages/schedule/ScheduleChange";
-import ScheduleHistory from "../pages/schedule/ScheduleHistory";
-import ScheduleHome from "../pages/schedule/ScheduleHome";
+import LogIn from '../pages/LogIn';
+import Register from '../pages/Register';
+import Home from '../pages/Home';
+import TasksToday from '../pages/TasksToday';
+import CheckIn from '../pages/CheckIn';
+import ScheduleApply from '../pages/schedule/ScheduleApply';
+import ScheduleChange from '../pages/schedule/ScheduleChange';
+import ScheduleHistory from '../pages/schedule/ScheduleHistory';
+import ScheduleHome from '../pages/schedule/ScheduleHome';
 
-import AdminHome from "../pages/Admin/AdminHome";
-import AdminApplyApprove from "../pages/Admin/AdminApplyApprove";
-import AdminChangeApprove from "../pages/Admin/AdminChangeApprove";
-import AdminCheckTime from "../pages/Admin/AdminCheckTime";
-import AdminTimeStatus from "../pages/Admin/AdminTimeStatus";
-import AdminSetTodo from "../pages/Admin/AdminSetTodo";
+import AdminHome from '../pages/Admin/AdminHome';
+import AdminApplyApprove from '../pages/Admin/AdminApplyApprove';
+import AdminChangeApprove from '../pages/Admin/AdminChangeApprove';
+import AdminCheckTime from '../pages/Admin/AdminCheckTime';
+import AdminTimeStatus from '../pages/Admin/AdminTimeStatus';
+import AdminSetTodo from '../pages/Admin/AdminSetTodo';
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: '/',
     element: <Navigate to="/login" replace />,
   },
   {
-    path: "/login",
+    path: '/login',
     element: <LogIn />,
   },
   {
-    path: "/register",
+    path: '/register',
     element: <Register />,
   },
   {
-    path: "/home",
+    path: '/home',
     element: <Home />,
   },
   {
-    path: "/check-in",
+    path: '/check-in',
     element: <CheckIn />,
   },
   {
-    path: "/tasks/today",
+    path: '/tasks/today',
     element: <TasksToday />,
   },
   {
-    path: "/schedule",
+    path: '/schedule',
     element: <ScheduleHome />,
   },
   {
-    path: "/schedule/apply",
+    path: '/schedule/apply',
     element: <ScheduleApply />,
   },
   {
-    path: "/schedule/change",
+    path: '/schedule/change',
     element: <ScheduleChange />,
   },
   {
-    path: "/schedule/history",
+    path: '/schedule/history',
     element: <ScheduleHistory />,
   },
   {
-    path: "/admin/applyapprove",
+    path: '/admin/applyapprove',
     element: <AdminApplyApprove />,
   },
   {
-    path: "/admin/changeapprove",
+    path: '/admin/changeapprove',
     element: <AdminChangeApprove />,
   },
   {
-    path: "/admin/checktime",
+    path: '/admin/checktime',
     element: <AdminCheckTime />,
   },
   {
-    path: "/admin/home",
+    path: '/admin/home',
     element: <AdminHome />,
   },
   {
-    path: "/admin/timestatus",
+    path: '/admin/timestatus',
     element: <AdminTimeStatus />,
   },
   {
-    path: "/admin/settodo",
+    path: '/admin/settodo',
     element: <AdminSetTodo />,
   },
 ]);

@@ -1,7 +1,7 @@
-import { useNavigate } from "react-router-dom";
-import left_chevron from "../assets/chevron/left_chevronImg.svg";
-import nfcIcon from "../../resources/img/component/icon/ico_flag.svg"; // 예시 아이콘
-import "../styles/check-in.scss";
+import { useNavigate } from 'react-router-dom';
+import left_chevron from '../assets/chevron/left_chevronImg.svg';
+import nfcIcon from '../../resources/img/component/icon/ico_flag.svg'; // 예시 아이콘
+import '../styles/check-in.scss';
 
 const CheckIn = () => {
   const navigate = useNavigate();
@@ -9,7 +9,7 @@ const CheckIn = () => {
   return (
     <div className="checkin-container">
       <div className="checkin-box">
-        <div className="back-button" onClick={() => navigate("/home")}>
+        <div className="back-button" onClick={() => navigate('/home')}>
           <img src={left_chevron} alt="뒤로가기" />
         </div>
 
