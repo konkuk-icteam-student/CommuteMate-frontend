@@ -52,7 +52,7 @@ const Register = () => {
                   {
                     'text-[#d32f2f]': timeLeft <= 60,
                     'text-[#6c757d]': timeLeft > 60,
-                  },
+                  }
                 )}
               >
                 {formatTime(timeLeft)}
