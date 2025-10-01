@@ -20,5 +20,4 @@ const Input: React.FC<InputProps> = ({ fullWidth = true, className, ...props }) 
   );
 };
 
-
 export default Input;
