@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import left_chevron from '../../assets/chevron/left_chevronImg.svg';
-import '../../styles/schedule/schedule.scss';
 import CTAButton from '../../components/CTAButton';
 import classNames from 'classnames';
 import { addDays, startOfWeek } from 'date-fns';
@@ -72,50 +71,57 @@ const ScheduleApply = () => {
 
   const dates = getWeekDates(currentWeek);
   return (
-    <div className="schedule-container">
-      <div className="header">
-        <div className="back-button" onClick={() => navigate('/schedule')}>
-          <img src={left_chevron} alt="뒤로가기" />
+    <div className="h-[100dvh] w-full bg-[#f8f9fa] font-['Pretendard_GOV',sans-serif] p-6 box-border text-[#212529]">
+      <div className="flex items-center gap-2 mb-6">
+        <div className="mb-4 cursor-pointer overflow-hidden" onClick={() => navigate('/schedule')}>
+          <img src={left_chevron} alt="뒤로가기" className="w-6 h-6" />
         </div>
-        <h2 className="schedule-title">{TARGET_MONTH + 1}월 근로 시간 신청</h2>
+        <h2 className="text-[22px] font-bold text-[#212529] mb-6 text-center">{TARGET_MONTH + 1}월 근로 시간 신청</h2>
       </div>
-      <div className="week-selector">
+      <div className="flex justify-center gap-1.5 mb-6">
         {[1, 2, 3, 4, 5].map((week) => (
           <button
             key={week}
             onClick={() => setCurrentWeek(week)}
-            className={currentWeek === week ? 'active' : ''}
+            className={classNames(
+              'py-2 px-4 text-sm rounded-full border border-[#dee2e6] bg-white text-[#495057] cursor-pointer',
+              { 'bg-[#4d7cfe] text-white font-semibold': currentWeek === week }
+            )}
           >
             {week}주차
           </button>
         ))}
       </div>
 
-      <div className="schedule-grid">
-        <div className="header-row">
-          <div className="time-cell" />
+      <div className="overflow-x-auto border border-[#dee2e6] rounded-xl bg-white mb-6">
+        <div className="flex">
+          <div className="w-[100px] min-w-[90px] text-[13px] font-medium bg-[#f1f3f5] text-[#212529] p-2 text-center border-r border-[#dee2e6]" />
           {dates.map((d, i) => (
-            <div key={i} className="day-cell">
-              <div className="date-label">{d.label}</div>
-              <div className="weekday-label">{['월', '화', '수', '목', '금'][i]}</div>
+            <div key={i} className="flex-1 border-r border-[#dee2e6] p-2 text-center bg-[#f1f3f5]">
+              <div className="text-xs text-[#868e96]">{d.label}</div>
+              <div className="text-sm font-semibold text-[#212529]">{['월', '화', '수', '목', '금'][i]}</div>
             </div>
           ))}
         </div>
 
         {TIMES.map((time) => (
-          <div key={time} className="row">
-            <div className="time-cell">{time}</div>
+          <div key={time} className="flex border-t border-[#dee2e6]">
+            <div className="w-[100px] min-w-[90px] text-[13px] font-medium bg-[#f1f3f5] text-[#212529] p-2 text-center border-r border-[#dee2e6]">{time}</div>
             {dates.map((d) => {
-              const timeKey = `${currentWeek}-${d.label}-${time}`; // label 사용
+              const timeKey = `${currentWeek}-${d.label}-${time}`;
               const isDisabled = d.disabled || DISABLED_TIMES.includes(time);
 
               return (
                 <div
                   key={timeKey}
-                  className={classNames('cell', {
-                    selected: selected[timeKey],
-                    disabled: isDisabled,
-                  })}
+                  className={classNames(
+                    'flex-1 h-9 border-r border-[#dee2e6] cursor-pointer transition-colors duration-150',
+                    {
+                      'bg-[#d0f0c0]': selected[timeKey],
+                      'bg-[#e9ecef] cursor-not-allowed': isDisabled,
+                      'active:bg-[#e9f8e2]': !isDisabled,
+                    }
+                  )}
                   onClick={() => {
                     if (!isDisabled) {
                       toggleCell(d.label, time);
@@ -127,24 +133,21 @@ const ScheduleApply = () => {
           </div>
         ))}
       </div>
-      <div className="summary">
-        <p className={parseFloat(getWeeklyHours(currentWeek)) > WEEK_LIMIT ? 'text-red' : ''}>
+      <div className="text-center text-sm mb-6">
+        <p className={classNames('my-1.5', { 'text-[#d32f2f] font-semibold': parseFloat(getWeeklyHours(currentWeek)) > WEEK_LIMIT })}>
           {currentWeek}주차 근무 시간: {getWeeklyHours(currentWeek)}시간
         </p>
 
         <p
-          className={
-            parseFloat(getMonthlyHours()) > MONTH_LIMIT
-              ? 'text-red'
-              : parseFloat(getMonthlyHours()) === MONTH_LIMIT
-                ? 'text-green'
-                : ''
-          }
+          className={classNames('my-1.5', {
+            'text-[#d32f2f] font-semibold': parseFloat(getMonthlyHours()) > MONTH_LIMIT,
+            'text-[#2e7d32] font-semibold': parseFloat(getMonthlyHours()) === MONTH_LIMIT,
+          })}
         >
           {TARGET_MONTH + 1}월 총 근무 시간: {getMonthlyHours()}시간
         </p>
       </div>
-      <div className="button-box">
+      <div className="flex pb-5">
         <CTAButton
           variant={
             parseFloat(getMonthlyHours()) !== MONTH_LIMIT

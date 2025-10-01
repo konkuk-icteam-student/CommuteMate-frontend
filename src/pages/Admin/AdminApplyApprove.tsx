@@ -1,5 +1,4 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import '../../styles/admin/applyApprove.scss';
 import left_chevron from '../../assets/chevron/left_chevronImg.svg';
 import { useNavigate } from 'react-router-dom';
 

@@ -1,15 +1,14 @@
 import { useNavigate } from 'react-router-dom';
 import CTAButton from '../components/CTAButton';
-import '../styles/home.scss'; // SCSS import
 
 const Home = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="home-container">
-      <div className="home-box">
-        <h1 className="home-title">홈</h1>
-        <div className="home-buttons">
+    <div className="w-screen min-h-[100dvh] bg-[#f8f9fa] flex justify-center items-center font-['Pretendard_GOV',sans-serif]">
+      <div className="bg-white p-10 rounded-2xl shadow-[0_6px_20px_rgba(0,0,0,0.05)] w-full max-w-[400px] text-center">
+        <h1 className="text-[22px] font-bold text-[#212529] mb-8">홈</h1>
+        <div className="flex flex-col gap-4">
           <CTAButton onClick={() => navigate('/check-in')}>출근 인증</CTAButton>
           <CTAButton onClick={() => navigate('/schedule')}>근로 시간 관리</CTAButton>
           <CTAButton onClick={() => navigate('/tasks/today')}>오늘 할 일</CTAButton>
