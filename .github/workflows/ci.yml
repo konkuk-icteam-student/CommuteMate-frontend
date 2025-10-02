@@ -14,17 +14,28 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      # 의존성 캐싱
+      # pnpm 설치
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      # Node.js 설정 및 의존성 캐싱
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: 'yarn'
+          cache: 'pnpm'
 
-      - name: Install deps
-        run: yarn install
+      - name: Install dependencies
+        run: pnpm install
 
-      # 타입체크 + 번들
-      - run: yarn build
+      # 타입체크
+      - name: Type check
+        run: pnpm type-check
 
-      # ESLint (선택 항목)
-      - run: yarn lint
+      # 빌드 (web 앱만)
+      - name: Build
+        run: pnpm build:web
+
+      # ESLint
+      - name: Lint
+        run: pnpm lint
