@@ -13,13 +13,16 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      # pnpm 설치 (package.json의 packageManager 필드 사용)
+      - uses: pnpm/action-setup@v4
+
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
-          cache: 'yarn'
+          cache: 'pnpm'
 
       - name: Install dependencies
-        run: yarn install
+        run: pnpm install --frozen-lockfile
 
       - name: Run Prettier
-        run: yarn prettier --check .
+        run: pnpm prettier --check .
