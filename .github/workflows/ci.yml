@@ -14,10 +14,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      # pnpm 설치
+      # pnpm 설치 (package.json의 packageManager 필드 사용)
       - uses: pnpm/action-setup@v4
-        with:
-          version: 9
 
       # Node.js 설정 및 의존성 캐싱
       - uses: actions/setup-node@v4
@@ -26,7 +24,7 @@ jobs:
           cache: 'pnpm'
 
       - name: Install dependencies
-        run: pnpm install
+        run: pnpm install --frozen-lockfile
 
       # 타입체크
       - name: Type check
