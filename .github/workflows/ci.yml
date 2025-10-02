@@ -37,4 +37,3 @@ jobs:
       # ESLint
       - name: Lint
         run: pnpm lint
-
