@@ -1,0 +1,25 @@
+{
+  "name": "@repo/shared-utils",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "exports": {
+    ".": "./src/index.ts",
+    "./date": "./src/date.utils.ts",
+    "./validation": "./src/validation.utils.ts",
+    "./export": "./src/export.utils.ts",
+    "./time-slot": "./src/time-slot.utils.ts"
+  },
+  "scripts": {
+    "type-check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "date-fns": "^4.1.0",
+    "@repo/shared-types": "workspace:*"
+  },
+  "devDependencies": {
+    "typescript": "~5.8.3"
+  }
+}
