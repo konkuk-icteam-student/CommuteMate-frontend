@@ -17,15 +17,32 @@ const LoginPage: React.FC = () => {
     setError('');
     setIsLoading(true);
 
-    try {
-      const response = await loginApi({ email, password });
-      login(response.user, response.accessToken);
+    // 임시: API 없이 바로 로그인 (UI 테스트용)
+    setTimeout(() => {
+      const mockUser = {
+        id: '1',
+        email: email,
+        name: '테스트 사용자',
+        role: email.includes('admin') ? ('admin' as const) : ('student' as const),
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      };
+
+      login(mockUser, 'mock-token-12345');
       navigate('/');
-    } catch (err) {
-      setError('로그인에 실패했습니다. 이메일과 비밀번호를 확인해주세요.');
-    } finally {
       setIsLoading(false);
-    }
+    }, 500);
+
+    // 실제 API 연동 시 아래 코드 사용
+    // try {
+    //   const response = await loginApi({ email, password });
+    //   login(response.user, response.accessToken);
+    //   navigate('/');
+    // } catch (err) {
+    //   setError('로그인에 실패했습니다. 이메일과 비밀번호를 확인해주세요.');
+    // } finally {
+    //   setIsLoading(false);
+    // }
   };
 
   return (
