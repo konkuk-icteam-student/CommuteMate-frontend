@@ -12,11 +12,7 @@ export interface TableProps<T> {
   onRowClick?: (item: T) => void;
 }
 
-export function Table<T extends Record<string, any>>({
-  data,
-  columns,
-  onRowClick,
-}: TableProps<T>) {
+export function Table<T extends Record<string, any>>({ data, columns, onRowClick }: TableProps<T>) {
   return (
     <table className="table">
       <thead>
@@ -34,9 +30,7 @@ export function Table<T extends Record<string, any>>({
             className={onRowClick ? 'cursor-pointer' : ''}
           >
             {columns.map((col) => (
-              <td key={col.key}>
-                {col.render ? col.render(item) : item[col.key]}
-              </td>
+              <td key={col.key}>{col.render ? col.render(item) : item[col.key]}</td>
             ))}
           </tr>
         ))}

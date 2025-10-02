@@ -1,5 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { getAllAttendanceRecords, approveAttendanceEdit, rejectAttendanceEdit } from '@repo/api-client';
+import {
+  getAllAttendanceRecords,
+  approveAttendanceEdit,
+  rejectAttendanceEdit,
+} from '@repo/api-client';
 import { Button, Table, Modal } from '@repo/shared-ui';
 import { formatTimeSlot } from '@repo/shared-utils';
 import type { AttendanceRecord } from '@repo/shared-types';
@@ -75,9 +79,7 @@ const ApprovalPage: React.FC = () => {
       <h1 className="text-2xl font-bold mb-6">수정 요청 승인/반려</h1>
 
       <div className="bg-white p-6 rounded-lg shadow">
-        <h2 className="text-xl font-semibold mb-4">
-          대기중인 요청 ({pendingRequests.length}건)
-        </h2>
+        <h2 className="text-xl font-semibold mb-4">대기중인 요청 ({pendingRequests.length}건)</h2>
 
         {pendingRequests.length === 0 ? (
           <p className="text-gray-500">대기중인 요청이 없습니다.</p>
@@ -146,9 +148,7 @@ const ApprovalPage: React.FC = () => {
             <div className="mb-4 p-4 bg-gray-50 rounded">
               <p>이름: {selectedRequest.userName}</p>
               <p>날짜: {selectedRequest.date}</p>
-              <p>
-                시간: {formatTimeSlot(selectedRequest.startTime, selectedRequest.duration)}
-              </p>
+              <p>시간: {formatTimeSlot(selectedRequest.startTime, selectedRequest.duration)}</p>
             </div>
 
             <div className="mb-4">

@@ -27,17 +27,14 @@ const WorkLogListPage: React.FC = () => {
     }
   };
 
-  const filteredLogs = filter === 'all'
-    ? workLogs
-    : workLogs.filter((log) => log.status === filter);
+  const filteredLogs =
+    filter === 'all' ? workLogs : workLogs.filter((log) => log.status === filter);
 
   return (
     <div className="work-log-list-page max-w-6xl mx-auto p-6">
       <div className="flex justify-between items-center mb-6">
         <h1 className="text-2xl font-bold">내 업무일지</h1>
-        <Button onClick={() => navigate('/work-log/write')}>
-          새 일지 작성
-        </Button>
+        <Button onClick={() => navigate('/work-log/write')}>새 일지 작성</Button>
       </div>
 
       <div className="bg-white p-4 rounded-lg shadow mb-6">
@@ -90,9 +87,7 @@ const WorkLogListPage: React.FC = () => {
       ) : filteredLogs.length === 0 ? (
         <div className="bg-white p-8 rounded-lg shadow text-center">
           <p className="text-gray-500 mb-4">업무일지가 없습니다.</p>
-          <Button onClick={() => navigate('/work-log/write')}>
-            첫 일지 작성하기
-          </Button>
+          <Button onClick={() => navigate('/work-log/write')}>첫 일지 작성하기</Button>
         </div>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">

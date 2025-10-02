@@ -14,10 +14,7 @@ class ApiClient {
     this.baseURL = baseURL;
   }
 
-  private async request<T>(
-    endpoint: string,
-    config: RequestConfig = {}
-  ): Promise<ApiResponse<T>> {
+  private async request<T>(endpoint: string, config: RequestConfig = {}): Promise<ApiResponse<T>> {
     const { params, ...fetchConfig } = config;
 
     // URL 생성 및 쿼리 파라미터 추가

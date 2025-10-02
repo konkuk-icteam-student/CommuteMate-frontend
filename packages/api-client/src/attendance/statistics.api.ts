@@ -1,9 +1,5 @@
 import { apiClient } from '../client';
-import type {
-  TimeSlotStats,
-  UserWorkingHoursStats,
-  ApiResponse,
-} from '@repo/shared-types';
+import type { TimeSlotStats, UserWorkingHoursStats, ApiResponse } from '@repo/shared-types';
 
 /**
  * 시간대별 근로자 통계 조회

@@ -8,21 +8,15 @@ const HomePage: React.FC = () => {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div className="text-center mb-12">
-        <h1 className="text-4xl font-bold text-gray-900 mb-4">
-          환영합니다, {user?.name}님!
-        </h1>
-        <p className="text-lg text-gray-600">
-          출근부 신청 및 업무일지를 관리하세요
-        </p>
+        <h1 className="text-4xl font-bold text-gray-900 mb-4">환영합니다, {user?.name}님!</h1>
+        <p className="text-lg text-gray-600">출근부 신청 및 업무일지를 관리하세요</p>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* Attendance Section */}
         <div className="bg-white p-6 rounded-lg shadow">
           <h2 className="text-2xl font-bold mb-4 text-blue-600">출근부</h2>
-          <p className="text-gray-600 mb-4">
-            근무 시간을 신청하고 내역을 확인하세요
-          </p>
+          <p className="text-gray-600 mb-4">근무 시간을 신청하고 내역을 확인하세요</p>
           <div className="space-y-2">
             <Link
               to="/attendance/apply"
@@ -74,9 +68,7 @@ const HomePage: React.FC = () => {
         {/* Work Log Section */}
         <div className="bg-white p-6 rounded-lg shadow">
           <h2 className="text-2xl font-bold mb-4 text-green-600">업무일지</h2>
-          <p className="text-gray-600 mb-4">
-            업무 내용을 기록하고 관리하세요
-          </p>
+          <p className="text-gray-600 mb-4">업무 내용을 기록하고 관리하세요</p>
           <div className="space-y-2">
             <Link
               to="/work-log/write"

@@ -49,9 +49,7 @@ const WorkLogReviewPage: React.FC = () => {
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <div className="bg-white p-6 rounded-lg shadow">
-          <h2 className="text-xl font-semibold mb-4">
-            검토 대기 ({submittedLogs.length})
-          </h2>
+          <h2 className="text-xl font-semibold mb-4">검토 대기 ({submittedLogs.length})</h2>
 
           {submittedLogs.length === 0 ? (
             <p className="text-gray-500">검토할 일지가 없습니다.</p>
@@ -83,9 +81,7 @@ const WorkLogReviewPage: React.FC = () => {
         </div>
 
         <div className="bg-white p-6 rounded-lg shadow">
-          <h2 className="text-xl font-semibold mb-4">
-            검토 완료 ({reviewedLogs.length})
-          </h2>
+          <h2 className="text-xl font-semibold mb-4">검토 완료 ({reviewedLogs.length})</h2>
 
           {reviewedLogs.length === 0 ? (
             <p className="text-gray-500">검토 완료된 일지가 없습니다.</p>

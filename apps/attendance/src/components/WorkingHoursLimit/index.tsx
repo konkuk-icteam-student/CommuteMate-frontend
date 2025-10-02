@@ -38,8 +38,8 @@ export const WorkingHoursLimit: React.FC<WorkingHoursLimitProps> = ({
               weeklyPercentage >= 100
                 ? 'bg-red-600'
                 : weeklyPercentage >= 90
-                ? 'bg-yellow-500'
-                : 'bg-green-600'
+                  ? 'bg-yellow-500'
+                  : 'bg-green-600'
             }`}
             style={{ width: `${Math.min(weeklyPercentage, 100)}%` }}
           ></div>
@@ -59,8 +59,8 @@ export const WorkingHoursLimit: React.FC<WorkingHoursLimitProps> = ({
               monthlyPercentage >= 100
                 ? 'bg-red-600'
                 : monthlyPercentage >= 90
-                ? 'bg-yellow-500'
-                : 'bg-green-600'
+                  ? 'bg-yellow-500'
+                  : 'bg-green-600'
             }`}
             style={{ width: `${Math.min(monthlyPercentage, 100)}%` }}
           ></div>
@@ -69,9 +69,7 @@ export const WorkingHoursLimit: React.FC<WorkingHoursLimitProps> = ({
 
       {(weeklyPercentage >= 90 || monthlyPercentage >= 90) && (
         <div className="mt-4 p-3 bg-yellow-50 border border-yellow-200 rounded">
-          <p className="text-sm text-yellow-800">
-            ⚠️ 근무시간 제한에 근접했습니다.
-          </p>
+          <p className="text-sm text-yellow-800">⚠️ 근무시간 제한에 근접했습니다.</p>
         </div>
       )}
     </div>

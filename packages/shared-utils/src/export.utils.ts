@@ -6,18 +6,20 @@ export const convertToCSV = <T extends Record<string, any>>(
   headers: { key: keyof T; label: string }[]
 ): string => {
   // CSV 헤더
-  const headerRow = headers.map(h => h.label).join(',');
+  const headerRow = headers.map((h) => h.label).join(',');
 
   // CSV 데이터 행
-  const dataRows = data.map(item =>
-    headers.map(h => {
-      const value = item[h.key];
-      // 쉼표나 따옴표가 포함된 경우 처리
-      if (typeof value === 'string' && (value.includes(',') || value.includes('"'))) {
-        return `"${value.replace(/"/g, '""')}"`;
-      }
-      return value ?? '';
-    }).join(',')
+  const dataRows = data.map((item) =>
+    headers
+      .map((h) => {
+        const value = item[h.key];
+        // 쉼표나 따옴표가 포함된 경우 처리
+        if (typeof value === 'string' && (value.includes(',') || value.includes('"'))) {
+          return `"${value.replace(/"/g, '""')}"`;
+        }
+        return value ?? '';
+      })
+      .join(',')
   );
 
   return [headerRow, ...dataRows].join('\n');

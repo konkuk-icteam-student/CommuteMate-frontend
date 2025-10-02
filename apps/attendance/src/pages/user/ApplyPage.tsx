@@ -60,9 +60,7 @@ const ApplyPage: React.FC = () => {
     }
 
     if (validation.warnings.length > 0) {
-      const confirmed = confirm(
-        validation.warnings.join('\n') + '\n\n계속 진행하시겠습니까?'
-      );
+      const confirmed = confirm(validation.warnings.join('\n') + '\n\n계속 진행하시겠습니까?');
       if (!confirmed) return;
     }
 
@@ -146,10 +144,7 @@ const ApplyPage: React.FC = () => {
         </div>
 
         <div className="bg-white p-6 rounded-lg shadow">
-          <WorkingHoursLimit
-            weeklyHours={stats.weeklyHours}
-            monthlyHours={stats.monthlyHours}
-          />
+          <WorkingHoursLimit weeklyHours={stats.weeklyHours} monthlyHours={stats.monthlyHours} />
         </div>
       </div>
     </div>

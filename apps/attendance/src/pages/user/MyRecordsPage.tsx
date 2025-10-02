@@ -30,9 +30,7 @@ const MyRecordsPage: React.FC = () => {
   };
 
   const filteredRecords = selectedDate
-    ? records.filter(
-        (r) => new Date(r.date).toDateString() === selectedDate.toDateString()
-      )
+    ? records.filter((r) => new Date(r.date).toDateString() === selectedDate.toDateString())
     : records;
 
   return (

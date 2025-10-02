@@ -46,9 +46,7 @@ const IrregularWorkPage: React.FC = () => {
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <div className="bg-white p-6 rounded-lg shadow">
-          <h2 className="text-xl font-semibold mb-4">
-            진행중인 업무 ({pendingWorks.length})
-          </h2>
+          <h2 className="text-xl font-semibold mb-4">진행중인 업무 ({pendingWorks.length})</h2>
 
           {isLoading ? (
             <p>로딩 중...</p>
@@ -75,11 +73,7 @@ const IrregularWorkPage: React.FC = () => {
                   key: 'actions',
                   header: '처리',
                   render: (work) => (
-                    <Button
-                      onClick={() => handleComplete(work.id)}
-                      size="sm"
-                      variant="primary"
-                    >
+                    <Button onClick={() => handleComplete(work.id)} size="sm" variant="primary">
                       완료
                     </Button>
                   ),
@@ -90,9 +84,7 @@ const IrregularWorkPage: React.FC = () => {
         </div>
 
         <div className="bg-white p-6 rounded-lg shadow">
-          <h2 className="text-xl font-semibold mb-4">
-            완료된 업무 ({completedWorks.length})
-          </h2>
+          <h2 className="text-xl font-semibold mb-4">완료된 업무 ({completedWorks.length})</h2>
 
           {completedWorks.length === 0 ? (
             <p className="text-gray-500">완료된 업무가 없습니다.</p>
@@ -112,9 +104,7 @@ const IrregularWorkPage: React.FC = () => {
                   key: 'completedAt',
                   header: '완료일',
                   render: (work) =>
-                    work.completedAt
-                      ? new Date(work.completedAt).toLocaleDateString()
-                      : '-',
+                    work.completedAt ? new Date(work.completedAt).toLocaleDateString() : '-',
                 },
               ]}
             />

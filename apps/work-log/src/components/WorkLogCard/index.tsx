@@ -39,9 +39,7 @@ export const WorkLogCard: React.FC<WorkLogCardProps> = ({
           <h3 className="text-lg font-semibold">{workLog.date}</h3>
         </div>
         {showStatus && (
-          <span className={`px-2 py-1 rounded text-xs ${status.color}`}>
-            {status.text}
-          </span>
+          <span className={`px-2 py-1 rounded text-xs ${status.color}`}>{status.text}</span>
         )}
       </div>
 

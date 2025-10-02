@@ -41,7 +41,7 @@ export const logoutApi = async (): Promise<void> => {
   await fetch(`${API_BASE_URL}/auth/logout`, {
     method: 'POST',
     headers: {
-      'Authorization': `Bearer ${token}`,
+      Authorization: `Bearer ${token}`,
     },
   });
 };

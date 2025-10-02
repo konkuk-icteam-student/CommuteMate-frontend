@@ -50,9 +50,7 @@ const TimeSlotManagePage: React.FC = () => {
       </div>
 
       <div className="bg-white p-6 rounded-lg shadow">
-        <h2 className="text-xl font-semibold mb-4">
-          {selectedDate} 시간대별 현황
-        </h2>
+        <h2 className="text-xl font-semibold mb-4">{selectedDate} 시간대별 현황</h2>
 
         {isLoading ? (
           <p>로딩 중...</p>

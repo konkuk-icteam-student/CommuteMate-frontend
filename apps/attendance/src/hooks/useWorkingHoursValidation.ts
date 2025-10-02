@@ -9,11 +9,6 @@ export const useWorkingHoursValidation = (
   timeSlotWorkers: number
 ): ValidationResult => {
   return useMemo(() => {
-    return validateAttendanceApplication(
-      userRecords,
-      newDuration,
-      targetDate,
-      timeSlotWorkers
-    );
+    return validateAttendanceApplication(userRecords, newDuration, targetDate, timeSlotWorkers);
   }, [userRecords, newDuration, targetDate, timeSlotWorkers]);
 };

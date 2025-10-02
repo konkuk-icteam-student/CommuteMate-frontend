@@ -23,9 +23,7 @@ export const WorkLogEditor: React.FC<WorkLogEditorProps> = ({
         rows={15}
         style={{ fontFamily: 'monospace' }}
       />
-      <div className="text-sm text-gray-500 mt-2">
-        {content.length}자
-      </div>
+      <div className="text-sm text-gray-500 mt-2">{content.length}자</div>
     </div>
   );
 };

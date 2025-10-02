@@ -1,5 +1,12 @@
 import React, { useState } from 'react';
-import { format, startOfMonth, endOfMonth, eachDayOfInterval, isSameMonth, isSameDay } from 'date-fns';
+import {
+  format,
+  startOfMonth,
+  endOfMonth,
+  eachDayOfInterval,
+  isSameMonth,
+  isSameDay,
+} from 'date-fns';
 import type { AttendanceRecord } from '@repo/shared-types';
 
 export interface AttendanceCalendarProps {

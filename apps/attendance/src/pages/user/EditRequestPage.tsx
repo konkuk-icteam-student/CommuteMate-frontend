@@ -87,9 +87,7 @@ const EditRequestPage: React.FC = () => {
               <div className="mb-4 p-4 bg-blue-50 rounded">
                 <h3 className="font-semibold mb-2">선택한 근무 내역</h3>
                 <p>날짜: {selectedRecord.date}</p>
-                <p>
-                  시간: {formatTimeSlot(selectedRecord.startTime, selectedRecord.duration)}
-                </p>
+                <p>시간: {formatTimeSlot(selectedRecord.startTime, selectedRecord.duration)}</p>
               </div>
 
               <div className="mb-4">
@@ -122,9 +120,7 @@ const EditRequestPage: React.FC = () => {
               </div>
             </form>
           ) : (
-            <p className="text-gray-500">
-              왼쪽 목록에서 수정할 근무 내역을 선택해주세요.
-            </p>
+            <p className="text-gray-500">왼쪽 목록에서 수정할 근무 내역을 선택해주세요.</p>
           )}
         </div>
       </div>

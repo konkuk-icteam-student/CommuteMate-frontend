@@ -106,24 +106,13 @@ const WorkLogWritePage: React.FC = () => {
         </div>
 
         <div className="flex gap-2 justify-end">
-          <Button
-            onClick={() => navigate('/work-log')}
-            variant="outline"
-            disabled={isLoading}
-          >
+          <Button onClick={() => navigate('/work-log')} variant="outline" disabled={isLoading}>
             취소
           </Button>
-          <Button
-            onClick={handleSaveDraft}
-            variant="outline"
-            disabled={isLoading}
-          >
+          <Button onClick={handleSaveDraft} variant="outline" disabled={isLoading}>
             임시저장
           </Button>
-          <Button
-            onClick={handleSubmit}
-            disabled={isLoading}
-          >
+          <Button onClick={handleSubmit} disabled={isLoading}>
             {isLoading ? '제출 중...' : '제출'}
           </Button>
         </div>

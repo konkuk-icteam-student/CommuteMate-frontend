@@ -1,4 +1,12 @@
-import { format, parse, startOfWeek, endOfWeek, startOfMonth, endOfMonth, isWithinInterval } from 'date-fns';
+import {
+  format,
+  parse,
+  startOfWeek,
+  endOfWeek,
+  startOfMonth,
+  endOfMonth,
+  isWithinInterval,
+} from 'date-fns';
 
 export const formatDate = (date: Date | string, formatStr: string = 'yyyy-MM-dd'): string => {
   const dateObj = typeof date === 'string' ? new Date(date) : date;
